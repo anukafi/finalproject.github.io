@@ -1,8 +1,9 @@
 ---
-title: "finalproject"
+title: "Statistics"
+author: "Sarah Vititoe"
+date: "12/2/2018"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -160,4 +161,30 @@ restaurants %>%
   layout(xaxis = list(title = "Longitude"),
          yaxis = list(title = "Latitude"))
 ```
+
+# STATS WOO!
+Do star ratings vary by category type?
+```{r}
+aov_stars_by_category <- restaurants %>% 
+  inner_join(popular) %>% 
+  aov(stars ~ category, data = .) %>% 
+  broom::glance()
+```
+
+Do stars vary by neighborhood?
+```{r}
+aov_stars_by_neighborhood <- restaurants %>% 
+  inner_join(popular) %>% 
+  aov(stars ~ neighborhood, data = .) %>% 
+  broom::glance()
+```
+
+Are stars and review counts correlated?
+```{r}
+rsq_stars_review_count <- restaurants %>% 
+  select(review_count, stars) %>% 
+  lm(stars ~ review_count, data = .) %>% 
+  broom::glance()
+```
+
 
