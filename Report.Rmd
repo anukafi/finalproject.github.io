@@ -1,7 +1,7 @@
 ---
 title: "Report"
 ---
-######Group Members 
+#####Group Members 
 Sarah Vititoe (sev2125)
 Stephanie Izard (smi2112)
 Anusheh Kafi (ak4123)
@@ -17,33 +17,148 @@ We were also inspired by the map created in class using the AirBnB data that use
 
 #####Initial questions: 
 ######What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
-We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas. 
-
-PLOT 1: One of the things we were interested in was seeing if people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating)
-
-PLOT 2: Another thing we wanted to look at was if there were any geographic areas that had a high concentration of low rated or high rated restaurants.
-
-PLOT 3/4: Another area of interest was breakdown of restaurant categories by neighborhood to see if certain neighborhood had concentrations of a specific type of restaurant.
+We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas. One of the things we were interested in was seeing if people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating) Another thing we wanted to look at was if there were any geographic areas that had a high concentration of low rated or high rated restaurants.Another area of interest was breakdown of restaurant categories by neighborhood to see if certain neighborhood had concentrations of a specific type of restaurant.
 
 #####Data: 
 ######Source
 The source of the data:  [Yelp](https://www.yelp.com/) is a well known website that allows users to review and rate restaurants they've been to, so that this knowledge can be shared with others. Yelp users, or "Yelpers" have written over 163 million reviews since the website's inception in 2014, with 32 million unique users every month. This dataset was released for academic use, and can be accessed [here](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6) on Kaggle.com. [Kaggle.com](https://www.kaggle.com/) is an online community of data scientists, owned by [Google](https://www.google.com/about/), and Yelp posted these csv files to Kaggle.com as a user. 
-
 #####Cleaning
 The category tags were concatenated into 1 variable so we had to split the string and then tidy the dataset to give us a list of business id's and their matching tags. We filtered the data to only include restaurants, as this dataset was for all businesses in Las Vegas. We also removed Downtown Tampa and North Valley because thy only had one restaurant, thus it seemed like an error. 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 
+library(tidyverse)
+library(plotly)
+library(RColorBrewer)
+```
+
+```{r tidy_bus, include = FALSE}
+business <- read_csv("./data/business.csv") %>% 
+  mutate(name = str_sub(name, 2, -2)) %>% 
+  mutate(address = str_sub(address, 2, -2)) %>% 
+  filter(neighborhood != "Downtown Tampa" & neighborhood != "North Valley")
+
+categories <- business %>% 
+  select(business_id, categories) %>% 
+  separate(categories, into = c("cat1", "cat2", "cat3", "cat4", "cat5", "cat6", "cat7", "cat8", "cat9", "cat10", "cat11", "cat12", "cat13", "cat14", "cat15", "cat16", "cat17", "cat18", "cat19", "cat20", "cat21", "cat22", "cat23", "cat24", "cat25"), sep  = ";") %>% 
+  gather(key = "cat_id", value = "category", starts_with("cat")) %>% 
+  select(-cat_id) 
+  
+restaurant_ids <- categories %>% 
+  filter(category == "Restaurants") %>% 
+  distinct(business_id)
+
+restaurants <- business %>% 
+  mutate(is_rest = ifelse(str_detect(categories, ";Restaurant") == TRUE, 1, 
+                                ifelse(str_match(categories, ";Food") == TRUE, 1, 0))) %>% 
+  filter(is_rest == 1) %>% 
+  select(-is_rest) 
+          
+```
+
+```{r tidy_att, include = FALSE}
+attributes <- read_csv("./data/attributes.csv") %>% 
+  janitor::clean_names() %>% 
+  select(business_id, alcohol)
+```
+
+```{r join, include = FALSE}
+restaurants <- restaurants %>% 
+  left_join(attributes, by = "business_id")
+
+popular <- categories %>% 
+  filter(category == "Restaurants" | category == "Food") %>% 
+  distinct(business_id) %>% 
+  left_join(categories, by = "business_id") %>% 
+  filter(category %in% c("Bars", "Breakfast & Brunch", "Chinese", "Italian", "Mexican", "Chicken Wings", "Salad", "Sushi Bars", "Pizza", "Steakhouses", "Fast Food"))
+```
 #####Exploratory analysis: 
 ######Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
 
-This code includes a count of the restaurants broken down by neighborhood, the number of alcohol serving and non-serving restaurants by neighborhood, and the breakdown of stars for each neighborhood. There is also a table showing the average number of reviews for restaurants in each neighborhood. 
+Our statistical analyses includes a count of the restaurants broken down by neighborhood, as seen in this table:
+```{r exploring, include = TRUE}
+restaurants %>% 
+  group_by(neighborhood) %>% 
+  count() %>% 
+  arrange(n) %>% 
+  knitr::kable()
+```
+We also created a breakdown count of stars ratings for each neighborhood:
+```{r exploring 2, include = TRUE}
+restaurants %>% 
+select(business_id, neighborhood, stars) %>% 
+  distinct() %>% 
+  group_by(neighborhood, stars) %>% 
+  tally %>% 
+  rename(Star_Count = n) %>% 
+  spread(key = stars, value = Star_Count) %>% 
+  knitr::kable()
+```
+There is also a table showing the average number of reviews for restaurants in each neighborhood below. 
+```{r exploring 3, include = TRUE}
+restaurants %>%
+  mutate(review_count = as.numeric(review_count)) %>% 
+  select(business_id, neighborhood, review_count) %>% 
+  group_by(neighborhood) %>% 
+  summarise(Average_Number_of_Reviews = mean(review_count)) %>% 
+  knitr::kable()
+```
+The following table shows teh average star rating for the restaurants in each neighborhood. 
+```{r exploring 4, include = TRUE}
+restaurants %>% 
+  group_by(neighborhood) %>% 
+  summarize(Average_Rating = mean(stars), Standard_Deviation = sd(stars)) %>% 
+  arrange(Average_Rating) %>% 
+  knitr::kable()
+```
+This last table shows the star ratings for different categories of restaurant types. 
+```{r exploring 5, include = TRUE}
+restaurants %>% 
+  inner_join(popular) %>% 
+  select(stars, category) %>% 
+  group_by(category) %>% 
+  summarise(avg_stars = mean(stars)) %>% 
+  arrange(desc(avg_stars)) %>% 
+  knitr::kable()
+```
 
-PLOT 2: To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot. 
-
-PLOT 3: We looked at the top 15 categories, and hand selected 10 categories likely to be mutually exclusive. 
+```{r open_close, include = TRUE}
+restaurants %>% 
+  mutate(stars = if_else(stars == 1, "1",
+                         if_else(stars == 1.5, "1.5",
+                                 if_else(stars == 2, "2",
+                                         if_else(stars == 2.5, "2.5",
+                                                 if_else(stars == 3, "3",
+                                                         if_else(stars == 4, "4",
+                                                                 if_else(stars == 4.5, "4.5", "5"))))))),
+         review_count = as.numeric(review_count)) %>% 
+  group_by(stars) %>% 
+  plot_ly(x = ~stars, y = ~review_count, color = ~stars, type = "bar", colors = "Set3") %>% 
+  layout(xaxis = list(title = "Stars"),
+         yaxis = list(title = "Number of Reviews"))
+```
 
 #####Additional analysis: 
-######If you undertake formal statistical analyses, describe these in detail
+```{r, include = FALSE}
+aov_stars_by_category <- restaurants %>% 
+  inner_join(popular) %>% 
+  aov(stars ~ category, data = .) %>% 
+  broom::glance()
+```
 
+```{r, include = FALSE}
+aov_stars_by_neighborhood <- restaurants %>% 
+  inner_join(popular) %>% 
+  aov(stars ~ neighborhood, data = .) %>% 
+  broom::glance()
+```
+
+```{r, include = FALSE}
+rsq_stars_review_count <- restaurants %>% 
+  select(review_count, stars) %>% 
+  lm(stars ~ review_count, data = .) %>% 
+  broom::glance()
+```
 #####Discussion: 
 ######What were your findings? Are they what you expect? What insights into the data can you make?
 There are 3476 restaurants included. The Strip has the most restaurants (613) and Anthem as the least (10). 
@@ -59,3 +174,57 @@ PLOT 2: There were no obvious visual trends for concentration of low rated or hi
 PLOT 3: From this plot, we see that The Strip contains the most bars, breakfast and brunch, italian, and steakhouses compared to other resturants. 
 
 PLOT 4: same as 3 but in map form
+<<<<<<< HEAD
+```{r stars_geo_plot, include = FALSE}
+#Center of Las Vegas: 36.1699° N, 115.1398° W. Plotly displayed is surrounds this center by 0.5 degrees longitude and latitude.
+restaurants %>% 
+  filter(latitude > 35.6699 & latitude < 36.6699) %>% 
+  filter(longitude < -114.6398 & longitude > -115.6398) %>%
+  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
+          alpha = 0.5, 
+          color = ~stars, hoverinfo = 'text',
+        text = ~paste(name, " @", neighborhood, "\n", address, "\n", city, ", ", state, postal_code, "\n", stars, "stars on Yelp")) %>%
+  layout(xaxis = list(title = "Longitude"),
+         yaxis = list(title = "Latitude"))
+```
+
+```{r stacked_bar, include = FALSE}
+restaurants %>% 
+  select(business_id, neighborhood) %>% 
+  inner_join(popular) %>% 
+  distinct() %>% 
+  group_by(neighborhood, category) %>% 
+  tally() %>% 
+  plotly::plot_ly(x = ~neighborhood, y = ~n, type = 'bar', color = ~category, hoverinfo = 'text',
+        text = ~paste(neighborhood, " has ",
+                      n, " ", category, " restaurants.")) %>%
+  layout(yaxis = list(title = "Restaurants"), xaxis = list(title = "", tickangle = -45), barmode = 'stack')
+```
+
+```{r category_geo_plot, include = FALSE}
+restaurants %>% 
+  inner_join(popular) %>% 
+  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
+          alpha = 0.9, 
+          color = ~category, hoverinfo = 'text',
+        text = ~paste(name, " @", neighborhood, "\n", address, "\n", city, ", ", state, postal_code, "\n", stars, "star", category, "on Yelp.")) %>%
+  layout(xaxis = list(title = "Longitude"),
+         yaxis = list(title = "Latitude"))
+```
+=======
+
+
+# Sarah's Stuff!!! No touchie
+We were interested in statistically testing whether the category of a restaurant affected the star ratings. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the category's star rating differs from the others *(ANOVA: F-statistic = `r aov_stars_by_category %>% select(statistic) %>% mutate(statistic = round(statistic, 3))`, Adjusted R-Square = `r aov_stars_by_category %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, p-value = `r aov_stars_by_category %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_category %>% select(df) %>% mutate(df = round(df, 3))`)*. At least one category of restaurants has a different mean star value.
+
+We were also interested in statisticallly testing whether the neighborhood the restaurant was in affected the restaurant's star rating. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the neighborhood's star ratings differs from the rest *(ANOVA: F-statistic = `r aov_stars_by_neighborhood %>% select(statistic) %>% mutate(statistic = round(statistic, 3))`, Adjusted R-Square = `r aov_stars_by_neighborhood %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, p-value = `r aov_stars_by_neighborhood %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_neighborhood %>% select(df) %>% mutate(df = round(df, 3))`)*. At least one neighborhood has a different mean star value than the other neighborhoods. 
+
+
+######Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
+
+This code includes a count of the restaurants broken down by neighborhood, and the breakdown of stars for each neighborhood. There is also a table showing the average number of reviews for restaurants in each neighborhood. 
+
+PLOT 2: To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot. 
+
+PLOT 3: We looked at the top 15 categories, and hand selected 10 categories likely to be mutually exclusive. 
+>>>>>>> 2a4b13c019e5cbe29b435f893f144b53dfd2af4c
