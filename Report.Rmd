@@ -1,7 +1,7 @@
 ---
 title: "Report"
 ---
-######Group Members 
+#####Group Members 
 Sarah Vititoe (sev2125)
 Stephanie Izard (smi2112)
 Anusheh Kafi (ak4123)
@@ -35,7 +35,7 @@ The category tags were concatenated into 1 variable so we had to split the strin
 #####Exploratory analysis: 
 ######Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
 
-This code includes a count of the restaurants broken down by neighborhood, the number of alcohol serving and non-serving restaurants by neighborhood, and the breakdown of stars for each neighborhood. There is also a table showing the average number of reviews for restaurants in each neighborhood. 
+This code includes a count of the restaurants broken down by neighborhood, and the breakdown of stars for each neighborhood. There is also a table showing the average number of reviews for restaurants in each neighborhood. 
 
 PLOT 2: To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot. 
 
@@ -43,6 +43,8 @@ PLOT 3: We looked at the top 15 categories, and hand selected 10 categories like
 
 #####Additional analysis: 
 ######If you undertake formal statistical analyses, describe these in detail
+
+
 
 #####Discussion: 
 ######What were your findings? Are they what you expect? What insights into the data can you make?
