@@ -1,17 +1,20 @@
 ---
-title: "finalproject"
-output: html_document
+title: "Flexdashboard"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+library(flexdashboard)
 library(tidyverse)
 library(plotly)
 library(RColorBrewer)
 ```
 
-####Loading and tidying the Yelp business dataset
 
 ```{r tidy_bus}
 business <- read_csv("./data/business.csv") %>% 
@@ -37,22 +40,16 @@ restaurants <- business %>%
           
 ```
 
-####Loading and tidying the attributes dataset
-
 ```{r tidy_att}
 attributes <- read_csv("./data/attributes.csv") %>% 
   janitor::clean_names() %>% 
   select(business_id, alcohol)
 ```
 
-####Joining the business and attributes datasets
-
 ```{r join}
 restaurants <- restaurants %>% 
   left_join(attributes, by = "business_id")
 ```
-
-##### exploratory stuff
 
 ```{r exploring}
 restaurants %>% 
@@ -84,10 +81,10 @@ restaurants %>%
   knitr::kable()
 ```
 
+Column {data-width=500}
+--------------------------------------------------------------------------------------------------------------------------------
 
-####Creating a plotly of restaurant locations
-
-Center of Las Vegas: 36.1699° N, 115.1398° W. Plotly displayed is surrounds this center by 0.5 degrees longitude and latitude.
+### Center of Las Vegas: 36.1699° N, 115.1398° W. Plotly displayed is surrounds this center by 0.5 degrees longitude and latitude.
 
 ```{r stephs_geo_plot}
 restaurants %>% 
@@ -101,25 +98,12 @@ restaurants %>%
          yaxis = list(title = "Latitude"))
 ```
 
-####Creating a plotly of open and closed restaurant compared to their rating on Yelp
 
-```{r open_clsoe}
-restaurants %>% 
-  mutate(stars = if_else(stars == 1, "1",
-                         if_else(stars == 1.5, "1.5",
-                                 if_else(stars == 2, "2",
-                                         if_else(stars == 2.5, "2.5",
-                                                 if_else(stars == 3, "3",
-                                                         if_else(stars == 4, "4",
-                                                                 if_else(stars == 4.5, "4.5", "5"))))))),
-         review_count = as.numeric(review_count)) %>% 
-  group_by(stars) %>% 
-  plot_ly(x = ~stars, y = ~review_count, color = ~stars, type = "bar", colors = "Set3") %>% 
-  layout(xaxis = list(title = "Stars"),
-         yaxis = list(title = "Number of Reviews"))
-```
+Column {data-width=500}
+-----------------------------------------------------------------------
 
-##### Plots of Restaurants
+#### Plots of Restaurants
+
 ```{r sarah_stacked_bar}
 popular <- categories %>% 
   filter(category == "Restaurants" | category == "Food") %>% 
@@ -140,7 +124,8 @@ restaurants %>%
 ```
 
 
-#### Geographic Plot by Categories
+### Geographic Plot by Categories
+
 ```{r sarah_geo_plot}
 restaurants %>% 
   inner_join(popular) %>% 
@@ -151,4 +136,9 @@ restaurants %>%
   layout(xaxis = list(title = "Longitude"),
          yaxis = list(title = "Latitude"))
 ```
+
+
+
+
+
 

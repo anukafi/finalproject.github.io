@@ -1,0 +1,108 @@
+---
+title: "Flexdashboard"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(RColorBrewer)
+```
+
+
+```{r loading_and_tidying, include = FALSE}
+business <- read_csv("./data/business.csv") %>% 
+  mutate(name = str_sub(name, 2, -2)) %>% 
+  mutate(address = str_sub(address, 2, -2)) %>% 
+  filter(neighborhood != "Downtown Tampa" & neighborhood != "North Valley")
+
+categories <- business %>% 
+  select(business_id, categories) %>% 
+  separate(categories, into = c("cat1", "cat2", "cat3", "cat4", "cat5", "cat6", "cat7", "cat8", "cat9", "cat10", "cat11", "cat12", "cat13", "cat14", "cat15", "cat16", "cat17", "cat18", "cat19", "cat20", "cat21", "cat22", "cat23", "cat24", "cat25"), sep  = ";") %>% 
+  gather(key = "cat_id", value = "category", starts_with("cat")) %>% 
+  select(-cat_id) 
+  
+restaurant_ids <- categories %>% 
+  filter(category == "Restaurants") %>% 
+  distinct(business_id)
+
+restaurants <- business %>% 
+  mutate(is_rest = ifelse(str_detect(categories, ";Restaurant") == TRUE, 1, 
+                                ifelse(str_match(categories, ";Food") == TRUE, 1, 0))) %>% 
+  filter(is_rest == 1) %>% 
+  select(-is_rest) 
+          
+attributes <- read_csv("./data/attributes.csv") %>% 
+  janitor::clean_names() %>% 
+  select(business_id, alcohol)
+
+restaurants <- restaurants %>% 
+  left_join(attributes, by = "business_id")
+```
+
+Column {data-width=350}
+--------------------------------------------------------------------------------------------------------------------------------
+
+### Center of Las Vegas: 36.1699° N, 115.1398° W. Plotly displayed is surrounds this center by 0.5 degrees longitude and latitude.
+
+```{r stephs_geo_plot}
+restaurants %>% 
+  filter(latitude > 35.6699 & latitude < 36.6699) %>% 
+  filter(longitude < -114.6398 & longitude > -115.6398) %>%
+  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
+          alpha = 0.5, 
+          color = ~stars, hoverinfo = 'text',
+        text = ~paste(name, " @", neighborhood, "\n", address, "\n", city, ", ", state, postal_code, "\n", stars, "stars on Yelp")) %>%
+  layout(xaxis = list(title = "Longitude"),
+         yaxis = list(title = "Latitude"))
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Creating a plotly of open and closed restaurant compared to their rating on Yelp
+
+```{r open_clsoe}
+restaurants %>% 
+  mutate(stars = if_else(stars == 1, "1",
+                         if_else(stars == 1.5, "1.5",
+                                 if_else(stars == 2, "2",
+                                         if_else(stars == 2.5, "2.5",
+                                                 if_else(stars == 3, "3",
+                                                         if_else(stars == 4, "4",
+                                                                 if_else(stars == 4.5, "4.5", "5"))))))),
+         review_count = as.numeric(review_count)) %>% 
+  group_by(stars) %>% 
+  plot_ly(x = ~stars, y = ~review_count, color = ~stars, type = "bar", colors = "Set3") %>% 
+  layout(xaxis = list(title = "Stars"),
+         yaxis = list(title = "Number of Reviews"))
+```
+
+
+#### Plots of Restaurants
+
+```{r sarah_stacked_bar}
+popular <- categories %>% 
+  filter(category == "Restaurants" | category == "Food") %>% 
+  distinct(business_id) %>% 
+  left_join(categories, by = "business_id") %>% 
+  filter(category %in% c("Bars", "Breakfast & Brunch", "Chinese", "Italian", "Mexican", "Chicken Wings", "Salad", "Sushi Bars", "Pizza", "Steakhouses", "Fast Food"))
+
+restaurants %>% 
+  select(business_id, neighborhood) %>% 
+  inner_join(popular) %>% 
+  distinct() %>% 
+  group_by(neighborhood, category) %>% 
+  tally() %>% 
+  plotly::plot_ly(x = ~neighborhood, y = ~n, type = 'bar', color = ~category, hoverinfo = 'text',
+        text = ~paste(neighborhood, " has ",
+                      n, " ", category, " restaurants.")) %>%
+  layout(yaxis = list(title = "Restaurants"), xaxis = list(title = "", tickangle = -45), barmode = 'stack')
+```
+
