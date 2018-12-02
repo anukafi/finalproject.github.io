@@ -79,8 +79,8 @@ restaurants %>%
 
 restaurants %>% 
   group_by(neighborhood) %>% 
-  summarize(avg_rating = mean(stars), sd = sd(stars)) %>% 
-  arrange(avg_rating) %>% 
+  summarize(avg = mean(stars), sd = sd(stars)) %>% 
+  arrange(avg) %>% 
   knitr::kable()
 ```
 
