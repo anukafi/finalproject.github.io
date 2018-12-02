@@ -65,11 +65,9 @@ restaurants %>%
          yaxis = list(title = "Latitude"))
 ```
 
-##### regress stuff
+##### exploratory stuff
 ```{r}
-restaurants %>% 
-fit = lm(stars ~ neighborhood + , data = restaurants)
-
 
 ```
+
 
