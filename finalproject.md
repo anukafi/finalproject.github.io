@@ -52,7 +52,9 @@ rm(business)
 ```
 
 ``` r
-attributes <- read_csv("./data/attributes.csv")
+attributes <- read_csv("./data/attributes.csv") %>% 
+  janitor::clean_names() %>% 
+  select(business_id, alcohol)
 ```
 
     ## Parsed with column specification:
