@@ -38,3 +38,4 @@ attributes <- read_csv("./data/attributes.csv") %>%
   select(business_id, alcohol)
 ```
 
+
