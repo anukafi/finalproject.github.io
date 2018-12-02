@@ -7,6 +7,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
+library(plotly)
 ```
 
 ####Loading and tidying the Yelp business dataset
@@ -14,7 +15,8 @@ library(tidyverse)
 ```{r}
 business <- read_csv("./data/business.csv") %>% 
   mutate(name = str_sub(name, 2, -2)) %>% 
-  mutate(address = str_sub(address, 2, -2))
+  mutate(address = str_sub(address, 2, -2)) %>% 
+  filter(neighborhood != "Downtown Tampa" & neighborhood != "North Valley")
 
 categories <- business %>% 
   select(business_id, categories) %>% 
@@ -50,6 +52,62 @@ restaurants <- restaurants %>%
 
 ####Creating a plotly of restaurant locations
 
+Center of Las Vegas: 36.1699° N, 115.1398° W. Plotly displayed is surrounds this center by 0.5 degrees longitude and latitude.
+
+```{r}
+restaurants %>% 
+  filter(latitude > 35.6699 & latitude < 36.6699) %>% 
+  filter(longitude < -114.6398 & longitude > -115.6398) %>%
+  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
+          alpha = 0.5, 
+          color = ~stars) %>%
+  layout(xaxis = list(title = "Longitude"),
+         yaxis = list(title = "Latitude"))
+```
+
+##### exploratory stuff
+```{r}
+restaurants %>% 
+  group_by(neighborhood) %>% 
+  count()
+
+
+restaurants %>%
+  filter(alcohol == "True" | is_open == "True") %>% 
+  group_by(neighborhood) %>% 
+  count()
+  knitr::kable()
+
+<<<<<<< HEAD
+  restaurants %>%
+  filter(alcohol == "False" | is_open == "True") %>% 
+  group_by(neighborhood) %>% 
+  count()
+  knitr::kable()
+
+restaurants %>% 
+select(business_id, neighborhood, stars) %>% 
+  distinct() %>% 
+  group_by(neighborhood, stars) %>% 
+  tally %>% 
+  rename(my_count = n) %>% 
+  spread(key = stars, value = my_count)
+  knitr::kable()
+
+restaurants %>%
+  mutate(review_count = as.numeric(review_count)) %>% 
+  select(business_id, neighborhood, review_count) %>% 
+  group_by(neighborhood) %>% 
+  summarise(Average_Number_of_Reviews = mean(review_count)) %>% 
+  knitr::kable()
+  
+=======
+
+>>>>>>> b12bee3543525e4c9df1f2ebcb1bf1823e3f3ac9
+```
+
+####  i guess another plot? we shall see 
+
 ```{r}
 
 
@@ -57,13 +115,7 @@ restaurants <- restaurants %>%
 
 ```
 
-##### regress stuff
-```{r}
-
-
-
-```
-
+<<<<<<< HEAD
 ##### Plots of Restaurants
 ```{r}
 popular <- categories %>% 
@@ -84,3 +136,5 @@ restaurants %>%
   layout(yaxis = list(title = "Restaurants"), xaxis = list(title = "", tickangle = -45), barmode = 'stack')
 ```
 
+=======
+>>>>>>> 6bdebab5e90e364cffe496af55f32bd9e1e479e4
