@@ -70,8 +70,8 @@ restaurants %>%
 ```{r}
 restaurants %>% 
   group_by(neighborhood) %>% 
-  count()
-
+  count() %>% 
+  knitr::kable()
 
 restaurants %>%
   filter(alcohol == "True" | is_open == "True") %>% 
@@ -79,7 +79,6 @@ restaurants %>%
   count()
   knitr::kable()
 
-<<<<<<< HEAD
   restaurants %>%
   filter(alcohol == "False" | is_open == "True") %>% 
   group_by(neighborhood) %>% 
@@ -101,10 +100,6 @@ restaurants %>%
   group_by(neighborhood) %>% 
   summarise(Average_Number_of_Reviews = mean(review_count)) %>% 
   knitr::kable()
-  
-=======
-
->>>>>>> b12bee3543525e4c9df1f2ebcb1bf1823e3f3ac9
 ```
 
 ####  i guess another plot? we shall see 
