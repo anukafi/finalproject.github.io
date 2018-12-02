@@ -6,6 +6,171 @@ Sarah Vititoe (sev2125)
 Stephanie Izard (smi2112)
 Anusheh Kafi (ak4123)
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(plotly)
+library(RColorBrewer)
+```
+
+```{r tidy_bus, include = FALSE}
+business <- read_csv("./data/business.csv") %>% 
+  mutate(name = str_sub(name, 2, -2)) %>% 
+  mutate(address = str_sub(address, 2, -2)) %>% 
+  filter(neighborhood != "Downtown Tampa" & neighborhood != "North Valley")
+
+categories <- business %>% 
+  select(business_id, categories) %>% 
+  separate(categories, into = c("cat1", "cat2", "cat3", "cat4", "cat5", "cat6", "cat7", "cat8", "cat9", "cat10", "cat11", "cat12", "cat13", "cat14", "cat15", "cat16", "cat17", "cat18", "cat19", "cat20", "cat21", "cat22", "cat23", "cat24", "cat25"), sep  = ";") %>% 
+  gather(key = "cat_id", value = "category", starts_with("cat")) %>% 
+  select(-cat_id) 
+  
+restaurant_ids <- categories %>% 
+  filter(category == "Restaurants") %>% 
+  distinct(business_id)
+
+restaurants <- business %>% 
+  mutate(is_rest = ifelse(str_detect(categories, ";Restaurant") == TRUE, 1, 
+                                ifelse(str_match(categories, ";Food") == TRUE, 1, 0))) %>% 
+  filter(is_rest == 1) %>% 
+  select(-is_rest) 
+          
+```
+
+```{r tidy_att, include = FALSE}
+attributes <- read_csv("./data/attributes.csv") %>% 
+  janitor::clean_names() %>% 
+  select(business_id, alcohol)
+```
+
+```{r join, include = FALSE}
+restaurants <- restaurants %>% 
+  left_join(attributes, by = "business_id")
+```
+
+```{r exploring, include = FALSE}
+restaurants %>% 
+  group_by(neighborhood) %>% 
+  count() %>% 
+  arrange(n) %>% 
+  knitr::kable()
+
+restaurants %>% 
+select(business_id, neighborhood, stars) %>% 
+  distinct() %>% 
+  group_by(neighborhood, stars) %>% 
+  tally %>% 
+  rename(my_count = n) %>% 
+  spread(key = stars, value = my_count) %>% 
+  knitr::kable()
+
+restaurants %>%
+  mutate(review_count = as.numeric(review_count)) %>% 
+  select(business_id, neighborhood, review_count) %>% 
+  group_by(neighborhood) %>% 
+  summarise(Average_Number_of_Reviews = mean(review_count)) %>% 
+  knitr::kable()
+
+restaurants %>% 
+  group_by(neighborhood) %>% 
+  summarize(avg = mean(stars), sd = sd(stars)) %>% 
+  arrange(avg) %>% 
+  knitr::kable()
+```
+
+```{r stephs_geo_plot, include = FALSE}
+#Center of Las Vegas: 36.1699° N, 115.1398° W. Plotly displayed is surrounds this center by 0.5 degrees longitude and latitude.
+
+
+restaurants %>% 
+  filter(latitude > 35.6699 & latitude < 36.6699) %>% 
+  filter(longitude < -114.6398 & longitude > -115.6398) %>%
+  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
+          alpha = 0.5, 
+          color = ~stars, hoverinfo = 'text',
+        text = ~paste(name, " @", neighborhood, "\n", address, "\n", city, ", ", state, postal_code, "\n", stars, "stars on Yelp")) %>%
+  layout(xaxis = list(title = "Longitude"),
+         yaxis = list(title = "Latitude"))
+```
+
+```{r open_clsoe, include = FALSE}
+restaurants %>% 
+  mutate(stars = if_else(stars == 1, "1",
+                         if_else(stars == 1.5, "1.5",
+                                 if_else(stars == 2, "2",
+                                         if_else(stars == 2.5, "2.5",
+                                                 if_else(stars == 3, "3",
+                                                         if_else(stars == 4, "4",
+                                                                 if_else(stars == 4.5, "4.5", "5"))))))),
+         review_count = as.numeric(review_count)) %>% 
+  group_by(stars) %>% 
+  plot_ly(x = ~stars, y = ~review_count, color = ~stars, type = "bar", colors = "Set3") %>% 
+  layout(xaxis = list(title = "Stars"),
+         yaxis = list(title = "Number of Reviews"))
+```
+
+```{r sarah_stacked_bar, include = FALSE}
+popular <- categories %>% 
+  filter(category == "Restaurants" | category == "Food") %>% 
+  distinct(business_id) %>% 
+  left_join(categories, by = "business_id") %>% 
+  filter(category %in% c("Bars", "Breakfast & Brunch", "Chinese", "Italian", "Mexican", "Chicken Wings", "Salad", "Sushi Bars", "Pizza", "Steakhouses", "Fast Food"))
+
+restaurants %>% 
+  select(business_id, neighborhood) %>% 
+  inner_join(popular) %>% 
+  distinct() %>% 
+  group_by(neighborhood, category) %>% 
+  tally() %>% 
+  plotly::plot_ly(x = ~neighborhood, y = ~n, type = 'bar', color = ~category, hoverinfo = 'text',
+        text = ~paste(neighborhood, " has ",
+                      n, " ", category, " restaurants.")) %>%
+  layout(yaxis = list(title = "Restaurants"), xaxis = list(title = "", tickangle = -45), barmode = 'stack')
+```
+
+```{r, include = FALSE}
+restaurants %>% 
+  inner_join(popular) %>% 
+  select(stars, category) %>% 
+  group_by(category) %>% 
+  summarise(avg_stars = mean(stars)) %>% 
+  arrange(desc(avg_stars)) %>% 
+  knitr::kable()
+```
+
+```{r sarah_geo_plot, include = FALSE}
+restaurants %>% 
+  inner_join(popular) %>% 
+  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
+          alpha = 0.9, 
+          color = ~category, hoverinfo = 'text',
+        text = ~paste(name, " @", neighborhood, "\n", address, "\n", city, ", ", state, postal_code, "\n", stars, "star", category, "on Yelp.")) %>%
+  layout(xaxis = list(title = "Longitude"),
+         yaxis = list(title = "Latitude"))
+```
+
+```{r, include = FALSE}
+aov_stars_by_category <- restaurants %>% 
+  inner_join(popular) %>% 
+  aov(stars ~ category, data = .) %>% 
+  broom::glance()
+```
+
+```{r, include = FALSE}
+aov_stars_by_neighborhood <- restaurants %>% 
+  inner_join(popular) %>% 
+  aov(stars ~ neighborhood, data = .) %>% 
+  broom::glance()
+```
+
+```{r, include = FALSE}
+rsq_stars_review_count <- restaurants %>% 
+  select(review_count, stars) %>% 
+  lm(stars ~ review_count, data = .) %>% 
+  broom::glance()
+```
+
 #####Motivation: 
 ######Provide an overview of the project goals and motivation.
 The motivation of this project is to use the Yelp dataset to look for trends in highly rated restaurants in Las Vegas. Our goal is to use the data to generate relevant insights that can be used to inform restaurant goers through dynamic visualizations to help answer the age-old question, "I don't know, what are you in the mood to eat tonight?".
@@ -18,6 +183,11 @@ We were also inspired by the map created in class using the AirBnB data that use
 #####Initial questions: 
 ######What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
 We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas. 
+
+
+
+
+### DON'T TOUCH!! SARAH'S STATS STUFF
 
 PLOT 1: One of the things we were interested in was seeing if people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating)
 
