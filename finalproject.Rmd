@@ -52,39 +52,13 @@ restaurants <- restaurants %>%
   left_join(attributes, by = "business_id")
 ```
 
-####Creating a plotly of restaurant locations
-
-Center of Las Vegas: 36.1699° N, 115.1398° W. Plotly displayed is surrounds this center by 0.5 degrees longitude and latitude.
-
-```{r stephs_geo_plot}
-restaurants %>% 
-  filter(latitude > 35.6699 & latitude < 36.6699) %>% 
-  filter(longitude < -114.6398 & longitude > -115.6398) %>%
-  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
-          alpha = 0.5, 
-          color = ~stars, hoverinfo = 'text',
-        text = ~paste(name, " @", neighborhood, "\n", address, "\n", city, ", ", state, postal_code, "\n", stars, "stars on Yelp")) %>%
-  layout(xaxis = list(title = "Longitude"),
-         yaxis = list(title = "Latitude"))
-```
-
 ##### exploratory stuff
+
 ```{r exploring}
 restaurants %>% 
   group_by(neighborhood) %>% 
   count() %>% 
-  knitr::kable()
-
-restaurants %>%
-  filter(alcohol == "True" | is_open == "True") %>% 
-  group_by(neighborhood) %>% 
-  count() %>% 
-  knitr::kable()
-
-  restaurants %>%
-  filter(alcohol == "False" | is_open == "True") %>% 
-  group_by(neighborhood) %>% 
-  count() %>% 
+  arrange(n) %>% 
   knitr::kable()
 
 restaurants %>% 
@@ -102,6 +76,29 @@ restaurants %>%
   group_by(neighborhood) %>% 
   summarise(Average_Number_of_Reviews = mean(review_count)) %>% 
   knitr::kable()
+
+restaurants %>% 
+  group_by(neighborhood) %>% 
+  summarize(avg = mean(stars), sd = sd(stars)) %>% 
+  arrange(avg) %>% 
+  knitr::kable()
+```
+
+
+####Creating a plotly of restaurant locations
+
+Center of Las Vegas: 36.1699° N, 115.1398° W. Plotly displayed is surrounds this center by 0.5 degrees longitude and latitude.
+
+```{r stephs_geo_plot}
+restaurants %>% 
+  filter(latitude > 35.6699 & latitude < 36.6699) %>% 
+  filter(longitude < -114.6398 & longitude > -115.6398) %>%
+  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
+          alpha = 0.5, 
+          color = ~stars, hoverinfo = 'text',
+        text = ~paste(name, " @", neighborhood, "\n", address, "\n", city, ", ", state, postal_code, "\n", stars, "stars on Yelp")) %>%
+  layout(xaxis = list(title = "Longitude"),
+         yaxis = list(title = "Latitude"))
 ```
 
 ####Creating a plotly of open and closed restaurant compared to their rating on Yelp
