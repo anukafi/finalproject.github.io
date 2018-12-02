@@ -2,10 +2,10 @@
 title: "P8105 Final Project Yelp Data for Restaurants in Las Vegas"
 ---
 
-### This analysis looks at data from Yelp.com, specifically restaurants for the city of Las Vegas. 
+This analysis looks at data from Yelp.com, specifically restaurants for the city of Las Vegas. 
 
 More information about our data and the approaches we took can be found on the [About](About.html) page. 
 
-### The repo is for this analysis can be found [here](anukafi/finalproject.github.io).
+The repo is for this analysis can be found [here](anukafi/finalproject.github.io).
 
-### A full report of this analysis can be found [here](Report.html). 
+A full report of this analysis can be found [here](Report.html). 
