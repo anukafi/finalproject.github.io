@@ -226,7 +226,7 @@ $(document).ready(function () {
 <h1>Motivation:</h1>
 <div id="provide-an-overview-of-the-project-goals-and-motivation." class="section level2">
 <h2>Provide an overview of the project goals and motivation.</h2>
-<p>The motivation of this project is to use the Yelp dataset to look for trends in highly rated restaurants in Las Vegas. Our goal is to use the data to generate relevant insights that can be used to inform restaurant goers through dynamic visualizations to help answer the age-old question, “I don’t know, what are you in the mood for eating tonight?”.</p>
+<p>The motivation of this project is to use the Yelp dataset to look for trends in highly rated restaurants in Las Vegas. Our goal is to use the data to generate relevant insights that can be used to inform restaurant goers through dynamic visualizations to help answer the age-old question, “I don’t know, what are you in the mood to eat tonight?”.</p>
 </div>
 </div>
 <div id="related-work" class="section level1">
@@ -241,6 +241,9 @@ $(document).ready(function () {
 <div id="what-questions-are-you-trying-to-answer-how-did-these-questions-evolve-over-the-course-of-the-project-what-new-questions-did-you-consider-in-the-course-of-your-analysis" class="section level2">
 <h2>What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?</h2>
 <p>We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas.</p>
+<p>PLOT 1: One of the things we were interested in was seeing if people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating)</p>
+<p>PLOT 2: Another thing we wanted to look at was if there were any geographic areas that had a high concentration of low rated or high rated restaurants.</p>
+<p>PLOT 3/4: Another area of interest was breakdown of restaurant categories by neighborhood to see if certain neighborhood had concentrations of a specific type of restaurant.</p>
 </div>
 </div>
 <div id="data" class="section level1">
@@ -251,7 +254,7 @@ $(document).ready(function () {
 </div>
 <div id="cleaning" class="section level2">
 <h2>Cleaning</h2>
-<p>We filtered to only include restaurants, as this dataset was for all businesses in Las Vegas. We also removed Downtown Tampa and North Valley because thy only had one restaurant, thus it seemed like an error.</p>
+<p>The category tags were concatenated into 1 variable so we had to split the string and then tidy the dataset to give us a list of business id’s and their matching tags. We filtered the data to only include restaurants, as this dataset was for all businesses in Las Vegas. We also removed Downtown Tampa and North Valley because thy only had one restaurant, thus it seemed like an error.</p>
 </div>
 </div>
 <div id="exploratory-analysis" class="section level1">
@@ -259,6 +262,8 @@ $(document).ready(function () {
 <div id="visualizations-summaries-and-exploratory-statistical-analyses.-justify-the-steps-you-took-and-show-any-major-changes-to-your-ideas." class="section level2">
 <h2>Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.</h2>
 <p>This code includes a count of the restaurants broken down by neighborhood, the number of alcohol serving and non-serving restaurants by neighborhood, and the breakdown of stars for each neighborhood. There is also a table showing the average number of reviews for restaurants in each neighborhood.</p>
+<p>PLOT 2: To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot.</p>
+<p>PLOT 3: We looked at the top 15 categories, and hand selected 10 categories likely to be mutually exclusive.</p>
 </div>
 </div>
 <div id="additional-analysis" class="section level1">
@@ -271,6 +276,13 @@ $(document).ready(function () {
 <h1>Discussion:</h1>
 <div id="what-were-your-findings-are-they-what-you-expect-what-insights-into-the-data-can-you-make" class="section level2">
 <h2>What were your findings? Are they what you expect? What insights into the data can you make?</h2>
+<p>There are 3476 restaurants included. The Strip has the most restaurants (613) and Anthem as the least (10).</p>
+<p>Even though The Strip has the highest number of restaurants, it is the 3rd worst rated neighborhood in terms of restaurant rating.</p>
+<p>Sushi bars have the highest average star rating regardless of neighborhood (3.8 stars). On the other hand, fast food places have the lowest average star rating (2.6 stars).</p>
+<p>PLOT 1: Contrary to our hypothesis regarding the relationship between number of ratings and star value, we found a right skewedness in number of ratings by star value. There were more reviews for the higher star values.</p>
+<p>PLOT 2: There were no obvious visual trends for concentration of low rated or high rated restaurants.</p>
+<p>PLOT 3: From this plot, we see that The Strip contains the most bars, breakfast and brunch, italian, and steakhouses compared to other resturants.</p>
+<p>PLOT 4: same as 3 but in map form</p>
 </div>
 </div>
 
