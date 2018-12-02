@@ -1,0 +1,46 @@
+---
+title: "Registration and Proposal"
+author: "Stephanie Izard (smi2112), Anu Kafi (ak4123), Sarah Vititoe (sev2125)"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Yelp- help us find our next favorite restaurant!
+
+####Motivation
+The motivation of this project is to use the Yelp dataset to look for trends in highly rated restaurants in the NYC and DC metro areas. Our goal is to use the data to generate relevant insights that can be used to inform restaurant goers through dynamic visualizations to help answer the age-old question, "I don't know, what are you in the mood for eating tonight?". Our final product will be an interactive, easy to navigate website containing relevant visualizations, graphs, and analytic results. 
+
+#### Data Source
+ [Yelp](https://www.yelp.com/) is a well known website that allows users to review and rate restaurants they've been to, so that this knowledge can be shared with others. Yelp users, or "Yelpers" have written over 163 million reviews since the website's inception in 2014, with 32 million unique users every month. This dataset was released for academic use, and can be accessed [here](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6) on Kaggle.com. [Kaggle.com](https://www.kaggle.com/) is an online community of data scientists, owned by [Google](https://www.google.com/about/), and Yelp posted these csv files to Kaggle.com as a user. 
+
+We will use US census data to get demographic information about the neighborhoods where the restaurants are located. This data can be found [here](https://www.census.gov/data.html).
+
+####Intended final products
+Our final product will be an interactive, easy to navigate website designed to help Yelp users discover information about Yelp-reviewed restaurants.
+
+####The planned analyses, visualizations, and coding challenges
+We plan to use linear regression to explore what covariates are associated with restaurant rating. We will look at the assoication between restaurant type andlocation, as well as restaurant type and income. We plan to use ggplot and plotly to create visualizations that consider geographical location, rating, and price of the restaurant in 2018 as well as longitudinally. Additionally, we plan to create visualizations that consider reviewer information, such as number of reviews and average rating. The primary coding challenge that we anticipate is uploading the Yelp data into R, as it is currently a JSON file and none of us are familiar with the jsonlite package yet.
+
+####Proposed timeline
+
+November 8: Proposal Submitted – Includes motivations and initial questions to be used in the Report
+
+November 14 (Tentative): Project Review Meeting 
+
+November 18: Finish data cleaning by this date and write up section in the Report on it
+
+November 21: Complete exploratory analysis and write up section in the Report on it
+
+November 28: Complete any additional analysis and write up section in the Report on it
+
+November 30: Write up Discussion section of Report
+
+December 2: Complete Webpage
+
+December 3: Record Screencast
+
+December 6: Submit Report, Webpage, and Screencast. Also, complete peer review. 
+
