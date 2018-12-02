@@ -5,4 +5,17 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-``
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+business <- read_csv("./data/business.csv")
+```
+
+```{r}
+attributes <- read_csv("./data/attributes.csv")
+```
+
