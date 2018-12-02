@@ -5,6 +5,8 @@ navbar:
   right:
     - text: "Report"
       href: Report.html
+    - text: "Flexdashboard"
+      href: flexdashboard.html
     - text: "About"
       href: about.html
     - icon: fa-envelope fa-lg
