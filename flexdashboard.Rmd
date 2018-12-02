@@ -7,16 +7,12 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 
 library(flexdashboard)
 library(tidyverse)
 library(plotly)
-library(RColorBrewer)
-```
 
-
-```{r loading_and_tidying, include = FALSE}
 business <- read_csv("./data/business.csv") %>% 
   mutate(name = str_sub(name, 2, -2)) %>% 
   mutate(address = str_sub(address, 2, -2)) %>% 
@@ -46,46 +42,10 @@ restaurants <- restaurants %>%
   left_join(attributes, by = "business_id")
 ```
 
-Column {data-width=350}
---------------------------------------------------------------------------------------------------------------------------------
-
-### Center of Las Vegas: 36.1699° N, 115.1398° W. Plotly displayed is surrounds this center by 0.5 degrees longitude and latitude.
-
-```{r stephs_geo_plot}
-restaurants %>% 
-  filter(latitude > 35.6699 & latitude < 36.6699) %>% 
-  filter(longitude < -114.6398 & longitude > -115.6398) %>%
-  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
-          alpha = 0.5, 
-          color = ~stars, hoverinfo = 'text',
-        text = ~paste(name, " @", neighborhood, "\n", address, "\n", city, ", ", state, postal_code, "\n", stars, "stars on Yelp")) %>%
-  layout(xaxis = list(title = "Longitude"),
-         yaxis = list(title = "Latitude"))
-```
-
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Creating a plotly of open and closed restaurant compared to their rating on Yelp
-
-```{r open_clsoe}
-restaurants %>% 
-  mutate(stars = if_else(stars == 1, "1",
-                         if_else(stars == 1.5, "1.5",
-                                 if_else(stars == 2, "2",
-                                         if_else(stars == 2.5, "2.5",
-                                                 if_else(stars == 3, "3",
-                                                         if_else(stars == 4, "4",
-                                                                 if_else(stars == 4.5, "4.5", "5"))))))),
-         review_count = as.numeric(review_count)) %>% 
-  group_by(stars) %>% 
-  plot_ly(x = ~stars, y = ~review_count, color = ~stars, type = "bar", colors = "Set3") %>% 
-  layout(xaxis = list(title = "Stars"),
-         yaxis = list(title = "Number of Reviews"))
-```
-
-
-#### Plots of Restaurants
+### Chart 1
 
 ```{r sarah_stacked_bar}
 popular <- categories %>% 
@@ -94,7 +54,7 @@ popular <- categories %>%
   left_join(categories, by = "business_id") %>% 
   filter(category %in% c("Bars", "Breakfast & Brunch", "Chinese", "Italian", "Mexican", "Chicken Wings", "Salad", "Sushi Bars", "Pizza", "Steakhouses", "Fast Food"))
 
-restaurants %>% 
+stacked <- restaurants %>% 
   select(business_id, neighborhood) %>% 
   inner_join(popular) %>% 
   distinct() %>% 
@@ -104,5 +64,40 @@ restaurants %>%
         text = ~paste(neighborhood, " has ",
                       n, " ", category, " restaurants.")) %>%
   layout(yaxis = list(title = "Restaurants"), xaxis = list(title = "", tickangle = -45), barmode = 'stack')
+
+stacked
 ```
 
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart 2
+
+```{r stephs_geo_plot}
+geo_1 <- restaurants %>% 
+  filter(latitude > 35.6699 & latitude < 36.6699) %>% 
+  filter(longitude < -114.6398 & longitude > -115.6398) %>%
+  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
+          alpha = 0.5, 
+          color = ~stars, hoverinfo = 'text',
+        text = ~paste(name, " @", neighborhood, "\n", address, "\n", city, ", ", state, postal_code, "\n", stars, "stars on Yelp")) %>%
+  layout(xaxis = list(title = "Longitude"),
+         yaxis = list(title = "Latitude"))
+
+geo_1
+```
+
+### Chart 3
+
+```{r sarah_geo_plot}
+geo_2 <- restaurants %>% 
+  inner_join(popular) %>% 
+  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
+          alpha = 0.9, 
+          color = ~category, hoverinfo = 'text',
+        text = ~paste(name, " @", neighborhood, "\n", address, "\n", city, ", ", state, postal_code, "\n", stars, "star", category, "on Yelp.")) %>%
+  layout(xaxis = list(title = "Longitude"),
+         yaxis = list(title = "Latitude"))
+
+geo_2
+```
