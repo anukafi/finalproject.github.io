@@ -1,0 +1,70 @@
+---
+title: "Subsetting the Data"
+author: "Sarah Vititoe"
+date: "11/13/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse) 
+```
+
+I have a folder hidden from git caled "raw_data", that contains the yelp-dataset folder. 
+
+These are the most popular cities in our Yelp Dataset:
+```{r top_cities}
+read_csv("../raw_data/yelp-dataset/yelp_business.csv") %>% 
+  group_by(city) %>% 
+  tally() %>% 
+  top_n((25)) %>% 
+  arrange(desc(n)) %>%
+  knitr::kable()
+```
+
+Since Las Vegas is the most popular city, I'll filter our results to just Vegas, and save this file to a new folder called "vegas", which will contain our subset of the data. 
+
+```{r}
+# filter to all businesses in Las Vegas
+business <- read_csv("../raw_data/yelp-dataset/yelp_business.csv") %>% 
+  filter(city == "Las Vegas") 
+
+# select our business_ids
+vegas_business_ids <- business %>%
+  select(business_id)
+
+# select reviews that match business in Vegas
+review <- read_csv("../raw_data/yelp-dataset/yelp_review.csv") %>% 
+  inner_join(vegas_business_ids, by = "business_id")
+
+# select the user id to find users who wrote a review at a business in Vegas
+vegas_user_ids <- review %>% 
+  select(user_id)
+
+user <- read_csv("../raw_data/yelp-dataset/yelp_user.csv") %>% 
+  inner_join(vegas_user_ids, by = "user_id")
+
+# look at all of the attributes of our business
+attributes <- read_csv("../raw_data/yelp-dataset/yelp_business_attributes.csv") %>% 
+  inner_join(vegas_business_ids, by = "business_id")
+
+hours <- read_csv("../raw_data/yelp-dataset/yelp_business_hours.csv") %>% 
+  inner_join(vegas_business_ids, by = "business_id")
+
+checkin <- read_csv("../raw_data/yelp-dataset/yelp_checkin.csv") %>% 
+  inner_join(vegas_business_ids, by = "business_id")
+
+tip <- read_csv("../raw_data/yelp-dataset/yelp_tip.csv") %>% 
+  inner_join(vegas_business_ids, by = "business_id")
+```
+
+```{r}
+write_csv(attributes, "../vegas/attributes.csv")
+write_csv(business, "../vegas/business.csv")
+write_csv(checkin, "../vegas/checkin.csv")
+write_csv(hours, "../vegas/hours.csv")
+write_csv(review, "../vegas/review.csv")
+write_csv(tip, "../vegas/review.csv")
+write_csv(user, "../vegas/user.csv")
+```
