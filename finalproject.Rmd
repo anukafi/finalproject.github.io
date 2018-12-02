@@ -123,6 +123,16 @@ restaurants %>%
   layout(yaxis = list(title = "Restaurants"), xaxis = list(title = "", tickangle = -45), barmode = 'stack')
 ```
 
+```{r}
+restaurants %>% 
+  inner_join(popular) %>% 
+  select(stars, category) %>% 
+  group_by(category) %>% 
+  summarise(avg_stars = mean(stars)) %>% 
+  arrange(desc(avg_stars)) %>% 
+  knitr::kable()
+```
+
 
 ### Geographic Plot by Categories
 
