@@ -30,10 +30,11 @@ restaurant_ids <- categories %>%
   distinct(business_id)
 
 restaurants <- business %>% 
-  left_join(restaurant_ids, by = "business_id") %>% 
-  select(-categories)
-
-rm(business)
+  mutate(is_rest = ifelse(str_detect(categories, ";Restaurant") == TRUE, 1, 
+                                ifelse(str_match(categories, ";Food") == TRUE, 1, 0))) %>% 
+  filter(is_rest == 1) %>% 
+  select(-is_rest) 
+          
 ```
 
 ####Loading and tidying the attributes dataset
