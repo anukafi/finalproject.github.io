@@ -76,6 +76,12 @@ restaurants %>%
   group_by(neighborhood) %>% 
   summarise(Average_Number_of_Reviews = mean(review_count)) %>% 
   knitr::kable()
+
+restaurants %>% 
+  group_by(neighborhood) %>% 
+  summarize(avg = mean(stars), sd = sd(stars)) %>% 
+  arrange(avg) %>% 
+  knitr::kable()
 ```
 
 
