@@ -71,12 +71,21 @@ restaurants %>%
 
 ```
 
-####  i guess another plot? we shall see 
+####Creating a plotly of open and closed restaurant compared to their rating on Yelp
 
 ```{r}
-
-
-
-
+restaurants %>% 
+  mutate(stars = if_else(stars == 1, "1",
+                         if_else(stars == 1.5, "1.5",
+                                 if_else(stars == 2, "2",
+                                         if_else(stars == 2.5, "2.5",
+                                                 if_else(stars == 3, "3",
+                                                         if_else(stars == 4, "4",
+                                                                 if_else(stars == 4.5, "4.5", "5"))))))),
+         review_count = as.numeric(review_count)) %>% 
+  group_by(stars) %>% 
+  plot_ly(x = ~stars, y = ~review_count, color = ~stars, type = "bar", colors = "Set3") %>% 
+  layout(xaxis = list(title = "Stars"),
+         yaxis = list(title = "Number of Reviews"))
 ```
 
