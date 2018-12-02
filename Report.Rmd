@@ -1,11 +1,11 @@
 ---
 title: "Report"
-output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+#Group Members 
+Sarah Vititoe (sev2125)
+Stephanie Izard (smi2112)
+Anusheh Kafi (ak4123)
 
 #Motivation: 
 ##Provide an overview of the project goals and motivation.
