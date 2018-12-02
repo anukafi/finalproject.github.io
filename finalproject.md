@@ -63,3 +63,8 @@ attributes <- read_csv("./data/attributes.csv") %>%
     ## )
 
     ## See spec(...) for full column specifications.
+
+``` r
+restaurants <- restaurants %>% 
+  left_join(attributes, by = "business_id")
+```
