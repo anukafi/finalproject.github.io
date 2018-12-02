@@ -64,3 +64,11 @@ restaurants %>%
   layout(xaxis = list(title = "Longitude"),
          yaxis = list(title = "Latitude"))
 ```
+
+##### regress stuff
+```{r}
+
+
+
+```
+
