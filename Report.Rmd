@@ -1,41 +1,61 @@
 ---
 title: "Report"
 ---
-
-#Group Members 
+######Group Members 
 Sarah Vititoe (sev2125)
 Stephanie Izard (smi2112)
 Anusheh Kafi (ak4123)
 
-#Motivation: 
-##Provide an overview of the project goals and motivation.
-The motivation of this project is to use the Yelp dataset to look for trends in highly rated restaurants in Las Vegas. Our goal is to use the data to generate relevant insights that can be used to inform restaurant goers through dynamic visualizations to help answer the age-old question, "I don't know, what are you in the mood for eating tonight?".
+#####Motivation: 
+######Provide an overview of the project goals and motivation.
+The motivation of this project is to use the Yelp dataset to look for trends in highly rated restaurants in Las Vegas. Our goal is to use the data to generate relevant insights that can be used to inform restaurant goers through dynamic visualizations to help answer the age-old question, "I don't know, what are you in the mood to eat tonight?".
 
-#Related work: 
-##Anything that inspired you, such as a paper, a web site, or something we discussed in class.
+#####Related work: 
+######Anything that inspired you, such as a paper, a web site, or something we discussed in class.
 Yelp inspired us to explore data regarding restaurants as it is commonly used on a daily basis to check out local restaurants for a wide-range of information and reviews. 
-We were also inspired by the map created in class using the AirBnB data that used the latitudes and longitudes, thus found a dataset that included such thing so we would be able to create a similar 
-map for restaurants in Las Vegas. 
+We were also inspired by the map created in class using the AirBnB data that used the latitudes and longitudes, thus found a dataset that included such thing so we would be able to create a similar map for restaurants in Las Vegas. 
 
-#Initial questions: 
-##What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
+#####Initial questions: 
+######What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
 We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas. 
 
-#Data: 
-##Source
+PLOT 1: One of the things we were interested in was seeing if people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating)
+
+PLOT 2: Another thing we wanted to look at was if there were any geographic areas that had a high concentration of low rated or high rated restaurants.
+
+PLOT 3/4: Another area of interest was breakdown of restaurant categories by neighborhood to see if certain neighborhood had concentrations of a specific type of restaurant.
+
+#####Data: 
+######Source
 The source of the data:  [Yelp](https://www.yelp.com/) is a well known website that allows users to review and rate restaurants they've been to, so that this knowledge can be shared with others. Yelp users, or "Yelpers" have written over 163 million reviews since the website's inception in 2014, with 32 million unique users every month. This dataset was released for academic use, and can be accessed [here](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6) on Kaggle.com. [Kaggle.com](https://www.kaggle.com/) is an online community of data scientists, owned by [Google](https://www.google.com/about/), and Yelp posted these csv files to Kaggle.com as a user. 
 
-##Cleaning
-We filtered to only include restaurants, as this dataset was for all businesses in Las Vegas. We also removed Downtown Tampa and North Valley because thy only had one restaurant, thus it seemed like an error. 
+#####Cleaning
+The category tags were concatenated into 1 variable so we had to split the string and then tidy the dataset to give us a list of business id's and their matching tags. We filtered the data to only include restaurants, as this dataset was for all businesses in Las Vegas. We also removed Downtown Tampa and North Valley because thy only had one restaurant, thus it seemed like an error. 
 
-#Exploratory analysis: 
-##Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
+#####Exploratory analysis: 
+######Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
 
 This code includes a count of the restaurants broken down by neighborhood, the number of alcohol serving and non-serving restaurants by neighborhood, and the breakdown of stars for each neighborhood. There is also a table showing the average number of reviews for restaurants in each neighborhood. 
 
+PLOT 2: To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot. 
 
-#Additional analysis: 
-##If you undertake formal statistical analyses, describe these in detail
+PLOT 3: We looked at the top 15 categories, and hand selected 10 categories likely to be mutually exclusive. 
 
-#Discussion: 
-##What were your findings? Are they what you expect? What insights into the data can you make?
+#####Additional analysis: 
+######If you undertake formal statistical analyses, describe these in detail
+
+#####Discussion: 
+######What were your findings? Are they what you expect? What insights into the data can you make?
+There are 3476 restaurants included. The Strip has the most restaurants (613) and Anthem as the least (10). 
+
+Even though The Strip has the highest number of restaurants, it is the 3rd worst rated neighborhood in terms of restaurant rating. 
+
+Sushi bars have the highest average star rating regardless of neighborhood (3.8 stars). On the other hand, fast food places have the lowest average star rating (2.6 stars). 
+
+PLOT 1: Contrary to our hypothesis regarding the relationship between number of ratings and star value, we found a right skewedness in number of ratings by star value. There were more reviews for the higher star values. 
+
+PLOT 2: There were no obvious visual trends for concentration of low rated or high rated restaurants.
+
+PLOT 3: From this plot, we see that The Strip contains the most bars, breakfast and brunch, italian, and steakhouses compared to other resturants. 
+
+PLOT 4: same as 3 but in map form
