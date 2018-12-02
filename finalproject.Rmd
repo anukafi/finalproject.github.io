@@ -128,7 +128,7 @@ popular <- categories %>%
   filter(category == "Restaurants" | category == "Food") %>% 
   distinct(business_id) %>% 
   left_join(categories, by = "business_id") %>% 
-  filter(category %in% c("Bars", "Breakfast & Brunch", "Chinese", "Italian", "Mexican", "Chicken Wings", "Salad", "Sushi Bars", "Pizza", "Steakhouses"))
+  filter(category %in% c("Bars", "Breakfast & Brunch", "Chinese", "Italian", "Mexican", "Chicken Wings", "Salad", "Sushi Bars", "Pizza", "Steakhouses", "Fast Food"))
 
 restaurants %>% 
   select(business_id, neighborhood) %>% 
