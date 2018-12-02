@@ -9,3 +9,5 @@ More information about our data and the approaches we took can be found on the [
 The repo is for this analysis can be found [here](anukafi/finalproject.github.io).
 
 A full report of this analysis can be found [here](Report.html). 
+
+The original dataset can be found [here](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6), but since these files were very large, we filtered to find only datapoints in Las Vegas. The subset used in this analysis can be found [here](https://drive.google.com/drive/folders/1pv1kB8oF7DLqWeWaSoDqLAMhqVHLMOqu?usp=sharing).
