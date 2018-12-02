@@ -187,6 +187,9 @@ $(document).ready(function () {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="Report.html">Report</a>
+</li>
+<li>
   <a href="about.html">About</a>
 </li>
 <li>
@@ -200,9 +203,6 @@ $(document).ready(function () {
     <span class="fa fa-github fa-lg"></span>
      
   </a>
-</li>
-<li>
-  <a href="Report.html">Report</a>
 </li>
       </ul>
     </div><!--/.nav-collapse -->
@@ -240,19 +240,25 @@ $(document).ready(function () {
 <h1>Initial questions:</h1>
 <div id="what-questions-are-you-trying-to-answer-how-did-these-questions-evolve-over-the-course-of-the-project-what-new-questions-did-you-consider-in-the-course-of-your-analysis" class="section level2">
 <h2>What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?</h2>
+<p>We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas.</p>
 </div>
 </div>
 <div id="data" class="section level1">
 <h1>Data:</h1>
-<div id="source-scraping-method-cleaning-etc." class="section level2">
-<h2>Source, scraping method, cleaning, etc.</h2>
+<div id="source" class="section level2">
+<h2>Source</h2>
 <p>The source of the data: <a href="https://www.yelp.com/">Yelp</a> is a well known website that allows users to review and rate restaurants they’ve been to, so that this knowledge can be shared with others. Yelp users, or “Yelpers” have written over 163 million reviews since the website’s inception in 2014, with 32 million unique users every month. This dataset was released for academic use, and can be accessed <a href="https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6">here</a> on Kaggle.com. <a href="https://www.kaggle.com/">Kaggle.com</a> is an online community of data scientists, owned by <a href="https://www.google.com/about/">Google</a>, and Yelp posted these csv files to Kaggle.com as a user.</p>
+</div>
+<div id="cleaning" class="section level2">
+<h2>Cleaning</h2>
+<p>We filtered to only include restaurants, as this dataset was for all businesses in Las Vegas. We also removed Downtown Tampa and North Valley because thy only had one restaurant, thus it seemed like an error.</p>
 </div>
 </div>
 <div id="exploratory-analysis" class="section level1">
 <h1>Exploratory analysis:</h1>
 <div id="visualizations-summaries-and-exploratory-statistical-analyses.-justify-the-steps-you-took-and-show-any-major-changes-to-your-ideas." class="section level2">
 <h2>Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.</h2>
+<p>This code includes a count of the restaurants broken down by neighborhood, the number of alcohol serving and non-serving restaurants by neighborhood, and the breakdown of stars for each neighborhood. There is also a table showing the average number of reviews for restaurants in each neighborhood.</p>
 </div>
 </div>
 <div id="additional-analysis" class="section level1">
