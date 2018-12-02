@@ -68,18 +68,11 @@ restaurants %>%
 ```
 
 ##### exploratory stuff
-<<<<<<< HEAD
-```{r eda}
-restaurants %>% 
-  group_by(neighborhood) %>% 
-  count()
-=======
 ```{r exploring}
 restaurants %>% 
   group_by(neighborhood) %>% 
   count() %>% 
   knitr::kable()
->>>>>>> b3016a79d0174192eca54e532ba8f779bfb4cbc4
 
 restaurants %>%
   filter(alcohol == "True" | is_open == "True") %>% 
@@ -87,11 +80,7 @@ restaurants %>%
   count() %>% 
   knitr::kable()
 
-<<<<<<< HEAD
   restaurants %>%
-=======
-restaurants %>%
->>>>>>> b3016a79d0174192eca54e532ba8f779bfb4cbc4
   filter(alcohol == "False" | is_open == "True") %>% 
   group_by(neighborhood) %>% 
   count() %>% 
@@ -116,14 +105,7 @@ restaurants %>%
 
 ####Creating a plotly of open and closed restaurant compared to their rating on Yelp
 
-<<<<<<< HEAD
-```{r idk}
-
-
-
-
-=======
-```{r}
+```{r open_clsoe}
 restaurants %>% 
   mutate(stars = if_else(stars == 1, "1",
                          if_else(stars == 1.5, "1.5",
@@ -137,7 +119,6 @@ restaurants %>%
   plot_ly(x = ~stars, y = ~review_count, color = ~stars, type = "bar", colors = "Set3") %>% 
   layout(xaxis = list(title = "Stars"),
          yaxis = list(title = "Number of Reviews"))
->>>>>>> b3016a79d0174192eca54e532ba8f779bfb4cbc4
 ```
 
 ##### Plots of Restaurants
@@ -161,7 +142,6 @@ restaurants %>%
 ```
 
 
-<<<<<<< HEAD
 #### Geographic Plot by Categories
 ```{r sarah_geo_plot}
 restaurants %>% 
@@ -174,5 +154,3 @@ restaurants %>%
          yaxis = list(title = "Latitude"))
 ```
 
-=======
->>>>>>> b3016a79d0174192eca54e532ba8f779bfb4cbc4
