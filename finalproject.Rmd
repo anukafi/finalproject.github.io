@@ -60,7 +60,8 @@ restaurants <- restaurants %>%
 
 ##### regress stuff
 ```{r}
-
+restaurants %>% 
+fit = lm(stars ~ neighborhood + , data = restaurants)
 
 
 ```
