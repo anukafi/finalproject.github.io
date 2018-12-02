@@ -1,12 +1,13 @@
 ---
 title: "finalproject"
-output: github_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
+library(plotly)
 ```
 
 ####Loading and tidying the Yelp business dataset
@@ -51,10 +52,15 @@ restaurants <- restaurants %>%
 
 ####Creating a plotly of restaurant locations
 
+Center of Las Vegas: 36.1699° N, 115.1398° W. Plotly displayed is surrounds this center by 0.5 degrees longitude and latitude.
+
 ```{r}
-
-
-
-
+restaurants %>% 
+  filter(latitude > 35.6699 & latitude < 36.6699) %>% 
+  filter(longitude < -114.6398 & longitude > -115.6398) %>%
+  plot_ly(x = ~longitude, y = ~latitude, type = "scatter", mode = "markers",
+          alpha = 0.5, 
+          color = ~stars) %>%
+  layout(xaxis = list(title = "Longitude"),
+         yaxis = list(title = "Latitude"))
 ```
-
