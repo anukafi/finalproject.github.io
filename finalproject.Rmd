@@ -68,6 +68,15 @@ restaurants %>%
 ##### exploratory stuff
 ```{r}
 
+
 ```
 
+####  i guess another plot? we shall see 
+
+```{r}
+
+
+
+
+```
 
