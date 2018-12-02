@@ -19,6 +19,7 @@ map for restaurants in Las Vegas.
 
 #Initial questions: 
 ##What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
+We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas. 
 
 #Data: 
 ##Source, scraping method, cleaning, etc.

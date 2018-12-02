@@ -15,7 +15,8 @@ library(plotly)
 ```{r}
 business <- read_csv("./data/business.csv") %>% 
   mutate(name = str_sub(name, 2, -2)) %>% 
-  mutate(address = str_sub(address, 2, -2))
+  mutate(address = str_sub(address, 2, -2)) %>% 
+  filter(neighborhood != "Downtown Tampa" & neighborhood != "North Valley")
 
 categories <- business %>% 
   select(business_id, categories) %>% 
@@ -67,7 +68,39 @@ restaurants %>%
 
 ##### exploratory stuff
 ```{r}
+restaurants %>% 
+  group_by(neighborhood) %>% 
+  count()
 
+
+restaurants %>%
+  filter(alcohol == "True" | is_open == "True") %>% 
+  group_by(neighborhood) %>% 
+  count()
+  knitr::kable()
+
+  restaurants %>%
+  filter(alcohol == "False" | is_open == "True") %>% 
+  group_by(neighborhood) %>% 
+  count()
+  knitr::kable()
+
+restaurants %>% 
+select(business_id, neighborhood, stars) %>% 
+  distinct() %>% 
+  group_by(neighborhood, stars) %>% 
+  tally %>% 
+  rename(my_count = n) %>% 
+  spread(key = stars, value = my_count)
+  knitr::kable()
+
+restaurants %>%
+  mutate(review_count = as.numeric(review_count)) %>% 
+  select(business_id, neighborhood, review_count) %>% 
+  group_by(neighborhood) %>% 
+  summarise(Average_Number_of_Reviews = mean(review_count)) %>% 
+  knitr::kable()
+  
 ```
 
 
