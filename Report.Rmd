@@ -174,6 +174,7 @@ PLOT 2: There were no obvious visual trends for concentration of low rated or hi
 PLOT 3: From this plot, we see that The Strip contains the most bars, breakfast and brunch, italian, and steakhouses compared to other resturants. 
 
 PLOT 4: same as 3 but in map form
+<<<<<<< HEAD
 ```{r stars_geo_plot, include = FALSE}
 #Center of Las Vegas: 36.1699° N, 115.1398° W. Plotly displayed is surrounds this center by 0.5 degrees longitude and latitude.
 restaurants %>% 
@@ -210,3 +211,20 @@ restaurants %>%
   layout(xaxis = list(title = "Longitude"),
          yaxis = list(title = "Latitude"))
 ```
+=======
+
+
+# Sarah's Stuff!!! No touchie
+We were interested in statistically testing whether the category of a restaurant affected the star ratings. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the category's star rating differs from the others *(ANOVA: F-statistic = `r aov_stars_by_category %>% select(statistic) %>% mutate(statistic = round(statistic, 3))`, Adjusted R-Square = `r aov_stars_by_category %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, p-value = `r aov_stars_by_category %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_category %>% select(df) %>% mutate(df = round(df, 3))`)*. At least one category of restaurants has a different mean star value.
+
+We were also interested in statisticallly testing whether the neighborhood the restaurant was in affected the restaurant's star rating. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the neighborhood's star ratings differs from the rest *(ANOVA: F-statistic = `r aov_stars_by_neighborhood %>% select(statistic) %>% mutate(statistic = round(statistic, 3))`, Adjusted R-Square = `r aov_stars_by_neighborhood %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, p-value = `r aov_stars_by_neighborhood %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_neighborhood %>% select(df) %>% mutate(df = round(df, 3))`)*. At least one neighborhood has a different mean star value than the other neighborhoods. 
+
+
+######Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
+
+This code includes a count of the restaurants broken down by neighborhood, and the breakdown of stars for each neighborhood. There is also a table showing the average number of reviews for restaurants in each neighborhood. 
+
+PLOT 2: To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot. 
+
+PLOT 3: We looked at the top 15 categories, and hand selected 10 categories likely to be mutually exclusive. 
+>>>>>>> 2a4b13c019e5cbe29b435f893f144b53dfd2af4c
