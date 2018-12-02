@@ -19,13 +19,20 @@ map for restaurants in Las Vegas.
 
 #Initial questions: 
 ##What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
+We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas. 
 
 #Data: 
-##Source, scraping method, cleaning, etc.
+##Source
 The source of the data:  [Yelp](https://www.yelp.com/) is a well known website that allows users to review and rate restaurants they've been to, so that this knowledge can be shared with others. Yelp users, or "Yelpers" have written over 163 million reviews since the website's inception in 2014, with 32 million unique users every month. This dataset was released for academic use, and can be accessed [here](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6) on Kaggle.com. [Kaggle.com](https://www.kaggle.com/) is an online community of data scientists, owned by [Google](https://www.google.com/about/), and Yelp posted these csv files to Kaggle.com as a user. 
+
+##Cleaning
+We filtered to only include restaurants, as this dataset was for all businesses in Las Vegas. We also removed Downtown Tampa and North Valley because thy only had one restaurant, thus it seemed like an error. 
 
 #Exploratory analysis: 
 ##Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
+
+This code includes a count of the restaurants broken down by neighborhood, the number of alcohol serving and non-serving restaurants by neighborhood, and the breakdown of stars for each neighborhood. There is also a table showing the average number of reviews for restaurants in each neighborhood. 
+
 
 #Additional analysis: 
 ##If you undertake formal statistical analyses, describe these in detail

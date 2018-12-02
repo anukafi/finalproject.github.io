@@ -15,7 +15,8 @@ library(plotly)
 ```{r}
 business <- read_csv("./data/business.csv") %>% 
   mutate(name = str_sub(name, 2, -2)) %>% 
-  mutate(address = str_sub(address, 2, -2))
+  mutate(address = str_sub(address, 2, -2)) %>% 
+  filter(neighborhood != "Downtown Tampa" & neighborhood != "North Valley")
 
 categories <- business %>% 
   select(business_id, categories) %>% 
@@ -31,7 +32,6 @@ restaurants <- business %>%
   left_join(restaurant_ids, by = "business_id") %>% 
   select(-categories)
 
-rm(restaurant_ids)
 rm(business)
 ```
 
@@ -67,8 +67,38 @@ restaurants %>%
 
 ##### exploratory stuff
 ```{r}
+restaurants %>% 
+  group_by(neighborhood) %>% 
+  count() %>% 
+  knitr::kable()
 
+restaurants %>%
+  filter(alcohol == "True" | is_open == "True") %>% 
+  group_by(neighborhood) %>% 
+  count()
+  knitr::kable()
 
+  restaurants %>%
+  filter(alcohol == "False" | is_open == "True") %>% 
+  group_by(neighborhood) %>% 
+  count()
+  knitr::kable()
+
+restaurants %>% 
+select(business_id, neighborhood, stars) %>% 
+  distinct() %>% 
+  group_by(neighborhood, stars) %>% 
+  tally %>% 
+  rename(my_count = n) %>% 
+  spread(key = stars, value = my_count)
+  knitr::kable()
+
+restaurants %>%
+  mutate(review_count = as.numeric(review_count)) %>% 
+  select(business_id, neighborhood, review_count) %>% 
+  group_by(neighborhood) %>% 
+  summarise(Average_Number_of_Reviews = mean(review_count)) %>% 
+  knitr::kable()
 ```
 
 ####Creating a plotly of open and closed restaurant compared to their rating on Yelp
@@ -89,3 +119,26 @@ restaurants %>%
          yaxis = list(title = "Number of Reviews"))
 ```
 
+<<<<<<< HEAD
+##### Plots of Restaurants
+```{r}
+popular <- categories %>% 
+  filter(category == "Restaurants" | category == "Food") %>% 
+  distinct(business_id) %>% 
+  left_join(categories, by = "business_id") %>% 
+  filter(category %in% c("Bars", "Breakfast & Brunch", "Chinese", "Italian", "Mexican", "Chicken Wings", "Salad", "Sushi Bars", "Pizza", "Steakhouses"))
+
+restaurants %>% 
+  select(business_id, neighborhood) %>% 
+  inner_join(popular) %>% 
+  distinct() %>% 
+  group_by(neighborhood, category) %>% 
+  tally() %>% 
+  plotly::plot_ly(x = ~neighborhood, y = ~n, type = 'bar', color = ~category, hoverinfo = 'text',
+        text = ~paste(neighborhood, " has ",
+                      n, " ", category, " restaurants.")) %>%
+  layout(yaxis = list(title = "Restaurants"), xaxis = list(title = "", tickangle = -45), barmode = 'stack')
+```
+
+=======
+>>>>>>> 6bdebab5e90e364cffe496af55f32bd9e1e479e4
