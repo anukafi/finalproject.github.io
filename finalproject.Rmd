@@ -30,7 +30,6 @@ restaurants <- business %>%
   left_join(restaurant_ids, by = "business_id") %>% 
   select(-categories)
 
-rm(restaurant_ids)
 rm(business)
 ```
 
@@ -64,3 +63,24 @@ restaurants <- restaurants %>%
 
 
 ```
+
+##### Plots of Restaurants
+```{r}
+popular <- categories %>% 
+  filter(category == "Restaurants" | category == "Food") %>% 
+  distinct(business_id) %>% 
+  left_join(categories, by = "business_id") %>% 
+  filter(category %in% c("Bars", "Breakfast & Brunch", "Chinese", "Italian", "Mexican", "Chicken Wings", "Salad", "Sushi Bars", "Pizza", "Steakhouses"))
+
+restaurants %>% 
+  select(business_id, neighborhood) %>% 
+  inner_join(popular) %>% 
+  distinct() %>% 
+  group_by(neighborhood, category) %>% 
+  tally() %>% 
+  plotly::plot_ly(x = ~neighborhood, y = ~n, type = 'bar', color = ~category, hoverinfo = 'text',
+        text = ~paste(neighborhood, " has ",
+                      n, " ", category, " restaurants.")) %>%
+  layout(yaxis = list(title = "Restaurants"), xaxis = list(title = "", tickangle = -45), barmode = 'stack')
+```
+
