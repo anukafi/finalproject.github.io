@@ -1,6 +1,8 @@
 finalproject
 ================
 
+#### Loading and tidying the Yelp business dataset
+
 ``` r
 business <- read_csv("./data/business.csv") %>% 
   mutate(name = str_sub(name, 2, -2)) %>% 
@@ -51,6 +53,8 @@ rm(restaurant_ids)
 rm(business)
 ```
 
+#### Loading and tidying the attributes dataset
+
 ``` r
 attributes <- read_csv("./data/attributes.csv") %>% 
   janitor::clean_names() %>% 
@@ -64,7 +68,11 @@ attributes <- read_csv("./data/attributes.csv") %>%
 
     ## See spec(...) for full column specifications.
 
+#### Joining the business and attributes datasets
+
 ``` r
 restaurants <- restaurants %>% 
   left_join(attributes, by = "business_id")
 ```
+
+#### Creating a plotly of restaurant locations
