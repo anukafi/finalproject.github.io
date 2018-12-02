@@ -1,6 +1,6 @@
 ---
 title: "finalproject"
-output: github_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -66,7 +66,7 @@ restaurants %>%
 ```
 
 ##### exploratory stuff
-```{r}
+```{r exploring}
 restaurants %>% 
   group_by(neighborhood) %>% 
   count() %>% 
@@ -75,13 +75,13 @@ restaurants %>%
 restaurants %>%
   filter(alcohol == "True" | is_open == "True") %>% 
   group_by(neighborhood) %>% 
-  count()
+  count() %>% 
   knitr::kable()
 
-  restaurants %>%
+restaurants %>%
   filter(alcohol == "False" | is_open == "True") %>% 
   group_by(neighborhood) %>% 
-  count()
+  count() %>% 
   knitr::kable()
 
 restaurants %>% 
@@ -90,7 +90,7 @@ select(business_id, neighborhood, stars) %>%
   group_by(neighborhood, stars) %>% 
   tally %>% 
   rename(my_count = n) %>% 
-  spread(key = stars, value = my_count)
+  spread(key = stars, value = my_count) %>% 
   knitr::kable()
 
 restaurants %>%
@@ -119,7 +119,6 @@ restaurants %>%
          yaxis = list(title = "Number of Reviews"))
 ```
 
-<<<<<<< HEAD
 ##### Plots of Restaurants
 ```{r}
 popular <- categories %>% 
@@ -140,5 +139,4 @@ restaurants %>%
   layout(yaxis = list(title = "Restaurants"), xaxis = list(title = "", tickangle = -45), barmode = 'stack')
 ```
 
-=======
->>>>>>> 6bdebab5e90e364cffe496af55f32bd9e1e479e4
+
