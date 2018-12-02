@@ -1,8 +1,9 @@
 ---
-title: "finalproject"
+title: "Statistics"
+author: "Sarah Vititoe"
+date: "12/2/2018"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -45,14 +46,14 @@ attributes <- read_csv("./data/attributes.csv") %>%
   select(business_id, alcohol)
 ```
 
-####Joining the business and attributes dataset
+####Joining the business and attributes datasets
 
 ```{r join}
 restaurants <- restaurants %>% 
   left_join(attributes, by = "business_id")
 ```
 
-#### exploratory stuff
+##### exploratory stuff
 
 ```{r exploring}
 restaurants %>% 
@@ -119,7 +120,7 @@ restaurants %>%
          yaxis = list(title = "Number of Reviews"))
 ```
 
-#### Plots of Restaurants
+##### Plots of Restaurants
 ```{r sarah_stacked_bar}
 popular <- categories %>% 
   filter(category == "Restaurants" | category == "Food") %>% 
@@ -149,7 +150,6 @@ restaurants %>%
   knitr::kable()
 ```
 
-
 #### Geographic Plot by Categories
 ```{r sarah_geo_plot}
 restaurants %>% 
@@ -162,8 +162,29 @@ restaurants %>%
          yaxis = list(title = "Latitude"))
 ```
 
+# STATS WOO!
+Do star ratings vary by category type?
+```{r}
+aov_stars_by_category <- restaurants %>% 
+  inner_join(popular) %>% 
+  aov(stars ~ category, data = .) %>% 
+  broom::glance()
+```
 
+Do stars vary by neighborhood?
+```{r}
+aov_stars_by_neighborhood <- restaurants %>% 
+  inner_join(popular) %>% 
+  aov(stars ~ neighborhood, data = .) %>% 
+  broom::glance()
+```
 
-
+Are stars and review counts correlated?
+```{r}
+rsq_stars_review_count <- restaurants %>% 
+  select(review_count, stars) %>% 
+  lm(stars ~ review_count, data = .) %>% 
+  broom::glance()
+```
 
 
