@@ -38,3 +38,8 @@ attributes <- read_csv("./data/attributes.csv") %>%
   select(business_id, alcohol)
 ```
 
+```{r}
+restaurants <- restaurants %>% 
+  left_join(attributes, by = "business_id")
+```
+
