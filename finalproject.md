@@ -2,7 +2,9 @@ finalproject
 ================
 
 ``` r
-business <- read_csv("./data/business.csv")
+business <- read_csv("./data/business.csv") %>% 
+  mutate(name = str_sub(name, 2, -2)) %>% 
+  mutate(address = str_sub(address, 2, -2))
 ```
 
     ## Parsed with column specification:
@@ -23,9 +25,34 @@ business <- read_csv("./data/business.csv")
     ## )
 
 ``` r
-attributes <- read_csv("./data/attributes.csv") %>% 
-  janitor::clean_names() %>% 
-  select(business_id, alcohol)
+categories <- business %>% 
+  select(business_id, categories) %>% 
+  separate(categories, into = c("cat1", "cat2", "cat3", "cat4", "cat5", "cat6", "cat7", "cat8", "cat9", "cat10", "cat11", "cat12", "cat13", "cat14", "cat15", "cat16", "cat17", "cat18", "cat19", "cat20", "cat21", "cat22", "cat23", "cat24", "cat25"), sep  =";") %>% 
+  gather(key = "cat_id", value = "category", starts_with("cat")) %>% 
+  select(-cat_id) 
+```
+
+    ## Warning: Expected 25 pieces. Additional pieces discarded in 1 rows [6851].
+
+    ## Warning: Expected 25 pieces. Missing pieces filled with `NA` in 26774
+    ## rows [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    ## 20, ...].
+
+``` r
+restaurant_ids <- categories %>% 
+  filter(category == "Restaurants" | category == "Food") %>% 
+  distinct(business_id)
+
+restaurants <- business %>% 
+  left_join(restaurant_ids, by = "business_id") %>% 
+  select(-categories)
+
+rm(restaurant_ids)
+rm(business)
+```
+
+``` r
+attributes <- read_csv("./data/attributes.csv")
 ```
 
     ## Parsed with column specification:
