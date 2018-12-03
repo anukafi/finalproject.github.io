@@ -139,9 +139,7 @@ restaurants %>%
   knitr::kable()
 ```
 
-The following plot shows the number of reviews for each star rating. 
-
-```{r open_close, include = TRUE}
+```{r open_close, include = FALSE}
 restaurants %>% 
   mutate(stars = if_else(stars == 1, "1",
                          if_else(stars == 1.5, "1.5",
@@ -157,12 +155,19 @@ restaurants %>%
          yaxis = list(title = "Number of Reviews"))
 ```
 
+```{r, include = FALSE}
+rsq_stars_review_count <- restaurants %>% 
+  select(review_count, stars) %>% 
+  lm(stars ~ review_count, data = .) %>% 
+  broom::glance()
 
+rsq_stars_review_count %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))
 
- 
-PLOT 2: To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot. 
+```
 
-PLOT 3: We looked at the top 15 categories, and hand selected 10 categories likely to be mutually exclusive. 
+We believed the number of reviews may be related to the number of stars and thus plotted the two variables. It seemed that as the number of reviews increased, the star rating also increased. Our adjusted r-squared value was `r rsq_stars_review_count %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, thus we elected to not show this plot as it was not a significant relationship. 
+
+To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot. We also did a similar graph, looking for areas of high concentration of different category types of restaurants. For the stacked bar plot, we looked at the top 15 categories of restaurants, and hand selected 10 categories likely to be mutually exclusive. This plot shows the frequency of different restaurant categories, broken down by neighborhood. This plots can be seen in our [flex dashboard](flexdashboard.html). 
 
 #####Additional analysis: 
 ```{r, include = FALSE}
@@ -179,12 +184,6 @@ aov_stars_by_neighborhood <- restaurants %>%
   broom::glance()
 ```
 
-```{r, include = FALSE}
-rsq_stars_review_count <- restaurants %>% 
-  select(review_count, stars) %>% 
-  lm(stars ~ review_count, data = .) %>% 
-  broom::glance()
-```
 We were interested in statistically testing whether the category of a restaurant affected the star ratings. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the category's star rating differs from the others *(ANOVA: F-statistic = `r aov_stars_by_category %>% select(statistic) %>% mutate(statistic = round(statistic, 3))`, Adjusted R-Square = `r aov_stars_by_category %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, p-value = `r aov_stars_by_category %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_category %>% select(df) %>% mutate(df = round(df, 3))`)*. At least one category of restaurants has a different mean star value.
 
 We were also interested in statisticallly testing whether the neighborhood the restaurant was in affected the restaurant's star rating. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the neighborhood's star ratings differs from the rest *(ANOVA: F-statistic = `r aov_stars_by_neighborhood %>% select(statistic) %>% mutate(statistic = round(statistic, 3))`, Adjusted R-Square = `r aov_stars_by_neighborhood %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, p-value = `r aov_stars_by_neighborhood %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_neighborhood %>% select(df) %>% mutate(df = round(df, 3))`)*. At least one neighborhood has a different mean star value than the other neighborhoods. 
@@ -241,4 +240,3 @@ restaurants %>%
   layout(xaxis = list(title = "Longitude"),
          yaxis = list(title = "Latitude"))
 ```
-
