@@ -7,12 +7,10 @@ navbar:
       href: Report.html
     - text: "Flexdashboard"
       href: flexdashboard.html
-    - text: "About"
-      href: about.html
     - icon: fa-envelope fa-lg
       href: mailto:<ak4123@cumc.columbia.edu>
     - icon: fa-github fa-lg
-      href: anukafi/finalproject.github.io
+      href: https://github.com/anukafi/finalproject.github.io.git
       
 output:
   html_document
