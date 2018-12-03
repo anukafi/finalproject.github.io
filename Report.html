@@ -197,7 +197,7 @@ $(document).ready(function () {
   <a href="Report.html">Report</a>
 </li>
 <li>
-  <a href="about.html">About</a>
+  <a href="flexdashboard.html">Flexdashboard</a>
 </li>
 <li>
   <a href="mailto:&lt;ak4123@cumc.columbia.edu&gt;">
@@ -206,7 +206,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="anukafi/finalproject.github.io">
+  <a href="https://github.com/anukafi/finalproject.github.io.git">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -254,8 +254,12 @@ $(document).ready(function () {
 <h5>Data:</h5>
 <div id="source" class="section level6">
 <h6>Source</h6>
-<p>The source of the data: <a href="https://www.yelp.com/">Yelp</a> is a well known website that allows users to review and rate restaurants they’ve been to, so that this knowledge can be shared with others. Yelp users, or “Yelpers” have written over 163 million reviews since the website’s inception in 2014, with 32 million unique users every month. This dataset was released for academic use, and can be accessed <a href="https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6">here</a> on Kaggle.com. <a href="https://www.kaggle.com/">Kaggle.com</a> is an online community of data scientists, owned by <a href="https://www.google.com/about/">Google</a>, and Yelp posted these csv files to Kaggle.com as a user. #####Cleaning The category tags were concatenated into 1 variable so we had to split the string and then tidy the dataset to give us a list of business id’s and their matching tags. We filtered the data to only include restaurants, as this dataset was for all businesses in Las Vegas. We also removed Downtown Tampa and North Valley because thy only had one restaurant, thus it seemed like an error.</p>
+<p>The source of the data: <a href="https://www.yelp.com/">Yelp</a> is a well known website that allows users to review and rate restaurants they’ve been to, so that this knowledge can be shared with others. Yelp users, or “Yelpers” have written over 163 million reviews since the website’s inception in 2014, with 32 million unique users every month. This dataset was released for academic use, and can be accessed <a href="https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6">here</a> on Kaggle.com. <a href="https://www.kaggle.com/">Kaggle.com</a> is an online community of data scientists, owned by <a href="https://www.google.com/about/">Google</a>, and Yelp posted these csv files to Kaggle.com as a user.</p>
 </div>
+</div>
+<div id="cleaning" class="section level5">
+<h5>Cleaning</h5>
+<p>The category tags were concatenated into 1 variable so we had to split the string and then tidy the dataset to give us a list of business id’s and their matching tags. We filtered the data to only include restaurants, as this dataset was for all businesses in Las Vegas. We also removed Downtown Tampa and North Valley because thy only had one restaurant, thus it seemed like an error.</p>
 </div>
 <div id="exploratory-analysis" class="section level5">
 <h5>Exploratory analysis:</h5>
@@ -265,132 +269,105 @@ $(document).ready(function () {
 <table>
 <thead>
 <tr class="header">
-<th align="left">neighborhood</th>
-<th align="right">n</th>
+<th align="left">Neighborhood</th>
+<th align="right">Restaurant Count</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Anthem</td>
-<td align="right">10</td>
-</tr>
-<tr class="even">
-<td align="left">The Lakes</td>
-<td align="right">19</td>
-</tr>
-<tr class="odd">
-<td align="left">University</td>
-<td align="right">55</td>
-</tr>
-<tr class="even">
-<td align="left">South Summerlin</td>
-<td align="right">64</td>
-</tr>
-<tr class="odd">
-<td align="left">Summerlin</td>
-<td align="right">95</td>
-</tr>
-<tr class="even">
-<td align="left">Centennial</td>
-<td align="right">111</td>
-</tr>
-<tr class="odd">
-<td align="left">Sunrise</td>
-<td align="right">129</td>
-</tr>
-<tr class="even">
-<td align="left">Northwest</td>
-<td align="right">143</td>
-</tr>
-<tr class="odd">
-<td align="left">Southwest</td>
-<td align="right">152</td>
-</tr>
-<tr class="even">
-<td align="left">Chinatown</td>
-<td align="right">224</td>
-</tr>
-<tr class="odd">
-<td align="left">Downtown</td>
-<td align="right">277</td>
-</tr>
-<tr class="even">
-<td align="left">Spring Valley</td>
-<td align="right">347</td>
-</tr>
-<tr class="odd">
-<td align="left">Eastside</td>
-<td align="right">357</td>
-</tr>
-<tr class="even">
-<td align="left">Southeast</td>
-<td align="right">431</td>
-</tr>
-<tr class="odd">
-<td align="left">Westside</td>
-<td align="right">449</td>
-</tr>
-<tr class="even">
 <td align="left">The Strip</td>
 <td align="right">613</td>
 </tr>
+<tr class="even">
+<td align="left">Westside</td>
+<td align="right">449</td>
+</tr>
 <tr class="odd">
-<td align="left">We also created a</td>
-<td align="right">breakdown count of stars ratings for each neighborhood:</td>
+<td align="left">Southeast</td>
+<td align="right">431</td>
+</tr>
+<tr class="even">
+<td align="left">Eastside</td>
+<td align="right">357</td>
+</tr>
+<tr class="odd">
+<td align="left">Spring Valley</td>
+<td align="right">347</td>
+</tr>
+<tr class="even">
+<td align="left">Downtown</td>
+<td align="right">277</td>
+</tr>
+<tr class="odd">
+<td align="left">Chinatown</td>
+<td align="right">224</td>
+</tr>
+<tr class="even">
+<td align="left">Southwest</td>
+<td align="right">152</td>
+</tr>
+<tr class="odd">
+<td align="left">Northwest</td>
+<td align="right">143</td>
+</tr>
+<tr class="even">
+<td align="left">Sunrise</td>
+<td align="right">129</td>
+</tr>
+<tr class="odd">
+<td align="left">Centennial</td>
+<td align="right">111</td>
+</tr>
+<tr class="even">
+<td align="left">Summerlin</td>
+<td align="right">95</td>
+</tr>
+<tr class="odd">
+<td align="left">South Summerlin</td>
+<td align="right">64</td>
+</tr>
+<tr class="even">
+<td align="left">University</td>
+<td align="right">55</td>
+</tr>
+<tr class="odd">
+<td align="left">The Lakes</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="left">Anthem</td>
+<td align="right">10</td>
 </tr>
 </tbody>
 </table>
+<p>We also created a breakdown count of stars ratings for each neighborhood:</p>
 <table>
 <thead>
 <tr class="header">
 <th align="left">neighborhood</th>
-<th align="right">1</th>
-<th align="right">1.5</th>
-<th align="right">2</th>
-<th align="right">2.5</th>
-<th align="right">3</th>
-<th align="right">3.5</th>
-<th align="right">4</th>
-<th align="right">4.5</th>
-<th align="right">5</th>
+<th align="right">1 star</th>
+<th align="right">1.5 star</th>
+<th align="right">2 star</th>
+<th align="right">2.5 star</th>
+<th align="right">3 star</th>
+<th align="right">3.5 star</th>
+<th align="right">4 star</th>
+<th align="right">4.5 star</th>
+<th align="right">5 star</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Anthem</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-<td align="right">NA</td>
+<td align="left">Westside</td>
 <td align="right">2</td>
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">Centennial</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
-<td align="right">14</td>
-<td align="right">25</td>
-<td align="right">29</td>
-<td align="right">21</td>
-<td align="right">11</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Chinatown</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-<td align="right">6</td>
 <td align="right">9</td>
-<td align="right">35</td>
-<td align="right">59</td>
+<td align="right">14</td>
+<td align="right">38</td>
+<td align="right">60</td>
+<td align="right">111</td>
+<td align="right">129</td>
 <td align="right">65</td>
-<td align="right">42</td>
-<td align="right">7</td>
+<td align="right">21</td>
 </tr>
 <tr class="even">
 <td align="left">Downtown</td>
@@ -405,6 +382,42 @@ $(document).ready(function () {
 <td align="right">18</td>
 </tr>
 <tr class="odd">
+<td align="left">Southeast</td>
+<td align="right">1</td>
+<td align="right">9</td>
+<td align="right">34</td>
+<td align="right">52</td>
+<td align="right">62</td>
+<td align="right">104</td>
+<td align="right">107</td>
+<td align="right">45</td>
+<td align="right">17</td>
+</tr>
+<tr class="even">
+<td align="left">Spring Valley</td>
+<td align="right">NA</td>
+<td align="right">4</td>
+<td align="right">18</td>
+<td align="right">28</td>
+<td align="right">44</td>
+<td align="right">84</td>
+<td align="right">87</td>
+<td align="right">72</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">The Strip</td>
+<td align="right">1</td>
+<td align="right">10</td>
+<td align="right">28</td>
+<td align="right">81</td>
+<td align="right">125</td>
+<td align="right">174</td>
+<td align="right">147</td>
+<td align="right">38</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
 <td align="left">Eastside</td>
 <td align="right">1</td>
 <td align="right">9</td>
@@ -414,6 +427,18 @@ $(document).ready(function () {
 <td align="right">72</td>
 <td align="right">100</td>
 <td align="right">48</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">Chinatown</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">9</td>
+<td align="right">35</td>
+<td align="right">59</td>
+<td align="right">65</td>
+<td align="right">42</td>
 <td align="right">7</td>
 </tr>
 <tr class="even">
@@ -429,30 +454,6 @@ $(document).ready(function () {
 <td align="right">5</td>
 </tr>
 <tr class="odd">
-<td align="left">South Summerlin</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">11</td>
-<td align="right">24</td>
-<td align="right">23</td>
-<td align="right">1</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">Southeast</td>
-<td align="right">1</td>
-<td align="right">9</td>
-<td align="right">34</td>
-<td align="right">52</td>
-<td align="right">62</td>
-<td align="right">104</td>
-<td align="right">107</td>
-<td align="right">45</td>
-<td align="right">17</td>
-</tr>
-<tr class="odd">
 <td align="left">Southwest</td>
 <td align="right">1</td>
 <td align="right">4</td>
@@ -465,16 +466,16 @@ $(document).ready(function () {
 <td align="right">3</td>
 </tr>
 <tr class="even">
-<td align="left">Spring Valley</td>
-<td align="right">NA</td>
+<td align="left">Centennial</td>
+<td align="right">1</td>
 <td align="right">4</td>
-<td align="right">18</td>
-<td align="right">28</td>
-<td align="right">44</td>
-<td align="right">84</td>
-<td align="right">87</td>
-<td align="right">72</td>
-<td align="right">10</td>
+<td align="right">4</td>
+<td align="right">14</td>
+<td align="right">25</td>
+<td align="right">29</td>
+<td align="right">21</td>
+<td align="right">11</td>
+<td align="right">2</td>
 </tr>
 <tr class="odd">
 <td align="left">Summerlin</td>
@@ -501,30 +502,6 @@ $(document).ready(function () {
 <td align="right">1</td>
 </tr>
 <tr class="odd">
-<td align="left">The Lakes</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">3</td>
-<td align="right">5</td>
-<td align="right">8</td>
-<td align="right">3</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
-<td align="left">The Strip</td>
-<td align="right">1</td>
-<td align="right">10</td>
-<td align="right">28</td>
-<td align="right">81</td>
-<td align="right">125</td>
-<td align="right">174</td>
-<td align="right">147</td>
-<td align="right">38</td>
-<td align="right">9</td>
-</tr>
-<tr class="odd">
 <td align="left">University</td>
 <td align="right">NA</td>
 <td align="right">1</td>
@@ -537,266 +514,273 @@ $(document).ready(function () {
 <td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">Westside</td>
+<td align="left">The Lakes</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">8</td>
+<td align="right">3</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Anthem</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">NA</td>
 <td align="right">2</td>
-<td align="right">9</td>
-<td align="right">14</td>
-<td align="right">38</td>
-<td align="right">60</td>
-<td align="right">111</td>
-<td align="right">129</td>
-<td align="right">65</td>
-<td align="right">21</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">NA</td>
 </tr>
-<tr class="odd">
-<td align="left">There is also a ta</td>
-<td align="right">ble s</td>
-<td align="right">howing</td>
-<td align="right">the</td>
-<td align="right">averag</td>
-<td align="right">e numb</td>
-<td align="right">er of</td>
-<td align="right">review</td>
-<td align="right">s for</td>
-<td align="right">restaurants in each neighborhood below.</td>
+<tr class="even">
+<td align="left">South Summerlin</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">11</td>
+<td align="right">24</td>
+<td align="right">23</td>
+<td align="right">1</td>
+<td align="right">NA</td>
 </tr>
 </tbody>
 </table>
+<p>There is also a table showing the average number of reviews for restaurants in each neighborhood below.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">neighborhood</th>
-<th align="right">Average_Number_of_Reviews</th>
+<th align="left">Neighborhood</th>
+<th align="right">Average Number of Reviews</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Anthem</td>
-<td align="right">190.00000</td>
+<td align="left">The Strip</td>
+<td align="right">409</td>
 </tr>
 <tr class="even">
-<td align="left">Centennial</td>
-<td align="right">107.78378</td>
-</tr>
-<tr class="odd">
-<td align="left">Chinatown</td>
-<td align="right">190.02232</td>
-</tr>
-<tr class="even">
-<td align="left">Downtown</td>
-<td align="right">174.64260</td>
-</tr>
-<tr class="odd">
-<td align="left">Eastside</td>
-<td align="right">134.10644</td>
-</tr>
-<tr class="even">
-<td align="left">Northwest</td>
-<td align="right">80.65734</td>
-</tr>
-<tr class="odd">
 <td align="left">South Summerlin</td>
-<td align="right">211.89062</td>
-</tr>
-<tr class="even">
-<td align="left">Southeast</td>
-<td align="right">116.44780</td>
+<td align="right">212</td>
 </tr>
 <tr class="odd">
-<td align="left">Southwest</td>
-<td align="right">144.33553</td>
+<td align="left">Anthem</td>
+<td align="right">190</td>
+</tr>
+<tr class="even">
+<td align="left">Chinatown</td>
+<td align="right">190</td>
+</tr>
+<tr class="odd">
+<td align="left">Downtown</td>
+<td align="right">175</td>
 </tr>
 <tr class="even">
 <td align="left">Spring Valley</td>
-<td align="right">144.63977</td>
+<td align="right">145</td>
 </tr>
 <tr class="odd">
-<td align="left">Summerlin</td>
-<td align="right">98.70526</td>
+<td align="left">Southwest</td>
+<td align="right">144</td>
 </tr>
 <tr class="even">
-<td align="left">Sunrise</td>
-<td align="right">36.75194</td>
+<td align="left">Eastside</td>
+<td align="right">134</td>
+</tr>
+<tr class="odd">
+<td align="left">Westside</td>
+<td align="right">127</td>
+</tr>
+<tr class="even">
+<td align="left">Southeast</td>
+<td align="right">116</td>
 </tr>
 <tr class="odd">
 <td align="left">The Lakes</td>
-<td align="right">110.42105</td>
+<td align="right">110</td>
 </tr>
 <tr class="even">
-<td align="left">The Strip</td>
-<td align="right">408.53507</td>
+<td align="left">Centennial</td>
+<td align="right">108</td>
 </tr>
 <tr class="odd">
+<td align="left">Summerlin</td>
+<td align="right">99</td>
+</tr>
+<tr class="even">
 <td align="left">University</td>
-<td align="right">89.81818</td>
-</tr>
-<tr class="even">
-<td align="left">Westside</td>
-<td align="right">126.61025</td>
+<td align="right">90</td>
 </tr>
 <tr class="odd">
-<td align="left">The following tabl</td>
-<td align="right">e shows teh average star rating for the restaurants in each neighborhood.</td>
+<td align="left">Northwest</td>
+<td align="right">81</td>
+</tr>
+<tr class="even">
+<td align="left">Sunrise</td>
+<td align="right">37</td>
 </tr>
 </tbody>
 </table>
+<p>The following table shows the average star rating for the restaurants in each neighborhood.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">neighborhood</th>
-<th align="right">Average_Rating</th>
-<th align="right">Standard_Deviation</th>
+<th align="left">Neighborhood</th>
+<th align="right">Average Rating</th>
+<th align="right">Standard Deviation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Sunrise</td>
-<td align="right">3.240310</td>
-<td align="right">0.9418664</td>
-</tr>
-<tr class="even">
-<td align="left">Centennial</td>
-<td align="right">3.333333</td>
-<td align="right">0.7929615</td>
-</tr>
-<tr class="odd">
-<td align="left">The Strip</td>
-<td align="right">3.364600</td>
-<td align="right">0.7062534</td>
-</tr>
-<tr class="even">
-<td align="left">Northwest</td>
-<td align="right">3.405594</td>
-<td align="right">0.7781140</td>
-</tr>
-<tr class="odd">
-<td align="left">Summerlin</td>
-<td align="right">3.415789</td>
-<td align="right">0.7775187</td>
-</tr>
-<tr class="even">
-<td align="left">Southeast</td>
-<td align="right">3.429234</td>
-<td align="right">0.8270031</td>
-</tr>
-<tr class="odd">
-<td align="left">Southwest</td>
-<td align="right">3.453947</td>
-<td align="right">0.8083899</td>
-</tr>
-<tr class="even">
-<td align="left">Eastside</td>
-<td align="right">3.457983</td>
-<td align="right">0.8156988</td>
-</tr>
-<tr class="odd">
-<td align="left">South Summerlin</td>
-<td align="right">3.523438</td>
-<td align="right">0.4994417</td>
-</tr>
-<tr class="even">
-<td align="left">Anthem</td>
-<td align="right">3.550000</td>
-<td align="right">0.7619420</td>
-</tr>
-<tr class="odd">
-<td align="left">University</td>
-<td align="right">3.572727</td>
-<td align="right">0.7227659</td>
-</tr>
-<tr class="even">
-<td align="left">Westside</td>
-<td align="right">3.609131</td>
-<td align="right">0.7794122</td>
-</tr>
-<tr class="odd">
-<td align="left">Spring Valley</td>
-<td align="right">3.631124</td>
-<td align="right">0.7712010</td>
-</tr>
-<tr class="even">
-<td align="left">Downtown</td>
-<td align="right">3.707581</td>
-<td align="right">0.7692319</td>
-</tr>
-<tr class="odd">
-<td align="left">Chinatown</td>
-<td align="right">3.712054</td>
-<td align="right">0.6668898</td>
-</tr>
-<tr class="even">
 <td align="left">The Lakes</td>
-<td align="right">3.789474</td>
-<td align="right">0.4806185</td>
+<td align="right">3.79</td>
+<td align="right">0.48</td>
+</tr>
+<tr class="even">
+<td align="left">Chinatown</td>
+<td align="right">3.71</td>
+<td align="right">0.67</td>
 </tr>
 <tr class="odd">
-<td align="left">This last table sh</td>
-<td align="right">ows the star rati</td>
-<td align="right">ngs for different categories of restaurant types.</td>
+<td align="left">Downtown</td>
+<td align="right">3.71</td>
+<td align="right">0.77</td>
+</tr>
+<tr class="even">
+<td align="left">Spring Valley</td>
+<td align="right">3.63</td>
+<td align="right">0.77</td>
+</tr>
+<tr class="odd">
+<td align="left">Westside</td>
+<td align="right">3.61</td>
+<td align="right">0.78</td>
+</tr>
+<tr class="even">
+<td align="left">University</td>
+<td align="right">3.57</td>
+<td align="right">0.72</td>
+</tr>
+<tr class="odd">
+<td align="left">Anthem</td>
+<td align="right">3.55</td>
+<td align="right">0.76</td>
+</tr>
+<tr class="even">
+<td align="left">South Summerlin</td>
+<td align="right">3.52</td>
+<td align="right">0.50</td>
+</tr>
+<tr class="odd">
+<td align="left">Eastside</td>
+<td align="right">3.46</td>
+<td align="right">0.82</td>
+</tr>
+<tr class="even">
+<td align="left">Southwest</td>
+<td align="right">3.45</td>
+<td align="right">0.81</td>
+</tr>
+<tr class="odd">
+<td align="left">Southeast</td>
+<td align="right">3.43</td>
+<td align="right">0.83</td>
+</tr>
+<tr class="even">
+<td align="left">Summerlin</td>
+<td align="right">3.42</td>
+<td align="right">0.78</td>
+</tr>
+<tr class="odd">
+<td align="left">Northwest</td>
+<td align="right">3.41</td>
+<td align="right">0.78</td>
+</tr>
+<tr class="even">
+<td align="left">The Strip</td>
+<td align="right">3.36</td>
+<td align="right">0.71</td>
+</tr>
+<tr class="odd">
+<td align="left">Centennial</td>
+<td align="right">3.33</td>
+<td align="right">0.79</td>
+</tr>
+<tr class="even">
+<td align="left">Sunrise</td>
+<td align="right">3.24</td>
+<td align="right">0.94</td>
 </tr>
 </tbody>
 </table>
-<pre><code>## Joining, by = &quot;business_id&quot;</code></pre>
+<p>This last table shows the star ratings for different categories of restaurant types.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">category</th>
-<th align="right">avg_stars</th>
+<th align="left">Category</th>
+<th align="right">Average Star Rating</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Sushi Bars</td>
-<td align="right">3.803977</td>
+<td align="right">3.80</td>
 </tr>
 <tr class="even">
 <td align="left">Steakhouses</td>
-<td align="right">3.791096</td>
+<td align="right">3.79</td>
 </tr>
 <tr class="odd">
 <td align="left">Salad</td>
-<td align="right">3.742958</td>
+<td align="right">3.74</td>
 </tr>
 <tr class="even">
 <td align="left">Breakfast &amp; Brunch</td>
-<td align="right">3.626866</td>
+<td align="right">3.63</td>
 </tr>
 <tr class="odd">
 <td align="left">Bars</td>
-<td align="right">3.600000</td>
+<td align="right">3.60</td>
 </tr>
 <tr class="even">
 <td align="left">Italian</td>
-<td align="right">3.558333</td>
+<td align="right">3.56</td>
 </tr>
 <tr class="odd">
 <td align="left">Mexican</td>
-<td align="right">3.537471</td>
+<td align="right">3.54</td>
 </tr>
 <tr class="even">
 <td align="left">Chinese</td>
-<td align="right">3.372047</td>
+<td align="right">3.37</td>
 </tr>
 <tr class="odd">
 <td align="left">Pizza</td>
-<td align="right">3.369863</td>
+<td align="right">3.37</td>
 </tr>
 <tr class="even">
 <td align="left">Chicken Wings</td>
-<td align="right">3.174497</td>
+<td align="right">3.17</td>
 </tr>
 <tr class="odd">
 <td align="left">Fast Food</td>
-<td align="right">2.855289</td>
+<td align="right">2.86</td>
 </tr>
 </tbody>
 </table>
-<div id="htmlwidget-f61ed8e7252a58b112c9" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f61ed8e7252a58b112c9">{"x":{"visdat":{"1d626c5b5fc1":["function () ","plotlyVisDat"]},"cur_data":"1d626c5b5fc1","attrs":{"1d626c5b5fc1":{"x":{},"y":{},"color":{},"colors":"Set3","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Stars","type":"category","categoryorder":"array","categoryarray":["1","1.5","2","2.5","3","4","4.5","5"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Number of Reviews"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"data":[{"x":["1","1","1","1","1","1","1","1","1","1"],"y":[12,8,4,7,3,3,7,5,3,10],"type":"bar","name":"1","marker":{"color":"rgba(141,211,199,1)","line":{"color":"rgba(141,211,199,1)"}},"textfont":{"color":"rgba(141,211,199,1)"},"error_y":{"color":"rgba(141,211,199,1)"},"error_x":{"color":"rgba(141,211,199,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5","1.5"],"y":[3,38,37,3,73,3,56,23,13,3,18,9,15,38,17,55,38,13,8,31,24,9,8,11,15,46,36,6,13,58,9,7,43,9,12,28,17,5,57,3,24,139,34,84,20,36,15,69,10,3,6,8,50,21,31,13,9,3,4,11,18,55,6,16,31,10,20,11,18],"type":"bar","name":"1.5","marker":{"color":"rgba(220,215,203,1)","line":{"color":"rgba(220,215,203,1)"}},"textfont":{"color":"rgba(220,215,203,1)"},"error_y":{"color":"rgba(220,215,203,1)"},"error_x":{"color":"rgba(220,215,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2","2"],"y":[26,4,23,41,28,32,17,33,84,20,21,72,56,3,25,5,8,6,321,28,31,15,3,16,19,12,9,5,6,17,9,12,13,3,372,7,9,440,7,13,18,6,43,52,9,64,14,105,396,6,8,28,11,61,8,45,36,20,4,17,4,67,58,5,132,19,9,10,49,6,5,25,14,36,34,3,43,4,10,11,27,89,63,11,5,23,278,18,39,43,15,64,22,7,14,24,22,35,16,26,50,49,96,18,46,24,16,69,30,7,82,89,53,6,3,14,26,91,4,4,27,5,3,9,32,45,219,4,23,14,99,9,6,5,3,67,3,11,25,15,44,16,86,23,8,5,93,8,9,6,7,57,355,22,13,13,23,5,104,3,165,8,48,15,11,17,8,184,4,6,7,16,61,4,24,487,63,6,31,19],"type":"bar","name":"2","marker":{"color":"rgba(239,137,128,1)","line":{"color":"rgba(239,137,128,1)"}},"textfont":{"color":"rgba(239,137,128,1)"},"error_y":{"color":"rgba(239,137,128,1)"},"error_x":{"color":"rgba(239,137,128,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5","2.5"],"y":[6,26,6,11,26,398,20,34,94,35,12,225,41,3,76,25,11,9,53,42,27,31,39,7,9,41,11,85,16,188,47,3,301,51,34,21,29,17,680,11,724,4,5,31,53,12,56,35,82,36,18,38,309,3,6,86,226,21,10,67,173,48,4,22,9,19,15,28,9,22,6,28,5,208,15,35,16,7,37,7,22,82,18,78,55,145,9,34,79,9,28,27,166,12,8,11,35,40,190,70,30,33,11,73,14,26,5,5,45,13,169,35,34,19,24,178,42,10,39,3,80,3,501,1607,33,48,420,6,51,16,101,765,106,89,33,35,5,14,14,24,10,123,11,6,73,55,35,60,20,10,10,83,22,29,153,255,27,288,18,41,18,60,83,3,128,1005,5,12,163,28,203,12,62,22,19,10,12,810,154,712,202,114,3,23,3,204,11,290,20,65,191,16,30,9,14,10,363,12,98,42,15,104,8,29,104,53,74,4,11,11,176,15,166,171,3,10,5,22,28,18,110,105,14,3,3,15,3,81,39,42,43,34,118,319,224,103,68,40,48,54,11,942,449,40,85,191,79,41,6,27,342,100,12,30,11,49,451,24,6,9,6,241,49,9,13,13,178,24,14,275,3,46,253,3,3,10,5,33,5,21,39,4,84,21,24,54,146,226,20,50,23,10,25,53,7,74,39,28,18,54,18,27,34,51,31,27,37,70,89,758,5,11,3,20,18,38,10,17,34,15,3,85,63,52,61,44,28,25,11,66,7,66,33,178],"type":"bar","name":"2.5","marker":{"color":"rgba(226,179,132,1)","line":{"color":"rgba(226,179,132,1)"}},"textfont":{"color":"rgba(226,179,132,1)"},"error_y":{"color":"rgba(226,179,132,1)"},"error_x":{"color":"rgba(226,179,132,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3","3"],"y":[349,4,1033,76,6,229,288,14,20,187,4,133,3,12,42,306,13,5,35,80,47,1252,121,20,31,36,16,13,11,15,6,38,8,93,41,591,620,44,37,4,452,17,47,987,19,602,94,227,21,42,30,172,16,237,121,80,17,40,65,40,3,22,14,233,71,66,82,50,161,31,100,261,12,21,126,3910,7,143,97,82,32,14,26,3,150,40,340,3,15,284,8,8,33,14,47,4,12,85,11,210,76,279,37,7,33,22,4,91,4,71,62,32,28,153,75,39,77,24,129,33,108,12,9,27,78,28,5,126,85,37,5,11,42,103,12,36,12,51,27,156,2094,149,25,5,121,16,13,225,41,8,77,173,5,107,1105,8,58,4,529,9,340,57,485,161,278,42,5,235,30,54,18,5,14,38,56,20,6,180,82,160,84,5,11,38,13,25,22,6,9,32,15,258,45,4,339,18,5,621,605,9,810,6,9,17,161,20,4,4,31,4,88,86,99,6,101,3,19,159,35,205,93,12,38,223,22,7,604,12,3,18,6,51,19,37,5,166,13,81,14,17,4,261,65,490,51,23,9,106,3,4,101,58,70,208,15,276,6,28,41,103,393,326,232,62,3,26,4,303,52,136,52,153,28,108,214,397,97,745,22,81,90,385,40,750,33,18,33,50,4,58,109,6,47,81,149,10,13,51,195,28,74,15,21,10,59,9,54,13,41,20,8,55,13,37,6,36,168,33,47,15,57,10,4,29,36,4,13,11,34,23,20,33,55,18,124,41,338,12,4,14,49,37,74,116,143,8,269,51,142,42,4,72,38,237,877,127,76,22,56,294,46,45,8,17,268,94,5,4,1961,265,332,20,111,90,54,403,5,146,88,30,68,12,17,125,18,34,231,37,59,37,139,36,6,72,203,149,18,14,5,16,23,21,21,7,17,13,173,273,150,6,79,178,89,209,24,339,137,19,16,66,14,157,21,753,17,12,11,16,55,40,20,20,106,66,15,67,70,17,94,6,33,4,106,33,16,107,50,9,28,39,568,2108,15,75,89,78,8,22,25,299,95,297,47,65,17,3,4,4,31,64,174,55,149,4,225,40,46,63,7,61,50,32,24,13,211,70,88,26,465,16,7,473,64,5,633,5,108,10,21,3,682,107,217,45,18,4,298,229,39,34,35,16,292,46,65,9,81,21,340,26,5,115,32,3,5,283,23,146,12,183,24,60,12,210,38,89,12,126,64,34,244,3,52,37,41,356,199,4,914,60,6,24,9,6,22,100,38,245,9,8,4,48,82],"type":"bar","name":"3","marker":{"color":"rgba(203,218,142,1)","line":{"color":"rgba(203,218,142,1)"}},"textfont":{"color":"rgba(203,218,142,1)"},"error_y":{"color":"rgba(203,218,142,1)"},"error_x":{"color":"rgba(203,218,142,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4"],"y":[13,264,840,459,428,23,171,270,53,27,72,331,635,538,227,268,15,648,18,32,44,4,348,36,754,141,35,135,907,3570,12,314,461,24,55,206,131,98,332,62,1301,32,25,47,163,40,3,539,36,14,95,55,1042,175,590,140,11,247,40,20,21,215,20,287,374,6,22,57,3,11,14,8,143,141,16,227,91,73,18,126,4,41,15,25,88,160,4774,6,447,8,44,149,130,338,109,146,639,416,8,177,26,21,128,18,33,17,169,49,80,64,270,327,37,81,2703,176,3741,4,13,395,171,24,111,227,96,189,523,846,329,929,7,25,2549,212,510,75,34,6,13,273,309,409,376,1184,27,120,25,56,1313,38,78,340,425,137,97,15,775,34,348,1169,148,239,32,122,16,666,5,5,615,331,261,126,50,18,9,1520,209,17,90,527,150,742,154,24,6,269,49,722,368,700,3,22,4,123,9,31,11,68,23,288,210,179,27,96,173,3,43,44,111,75,61,512,26,317,145,205,3012,351,16,675,37,179,159,307,52,95,117,333,445,87,197,13,23,4,76,246,7,9,24,97,254,908,173,180,70,326,79,102,71,6,43,33,440,7,12,591,30,103,994,736,311,1747,5,463,53,61,1068,7,178,1204,49,46,53,707,214,570,62,4,25,329,59,5,278,1339,170,9,82,213,74,28,310,11,12,128,106,259,9,56,8,96,23,30,584,261,887,3,26,108,199,31,23,10,30,67,522,356,419,24,84,219,148,4,8,90,727,657,253,10,7,8,884,43,13,23,110,74,346,110,103,646,4,4,5,44,10,102,376,86,103,183,14,467,232,19,104,339,50,63,60,24,323,381,220,174,759,20,23,35,422,3,805,938,3,20,107,189,156,530,156,6,17,4,46,1169,882,7,338,188,90,4,59,95,222,26,1738,485,16,180,585,45,1946,19,29,195,28,176,222,326,119,281,59,5447,203,220,354,235,28,8,68,4,227,45,197,104,153,10,106,185,313,21,97,7,616,6,30,628,1250,28,388,284,304,1037,6,176,57,252,238,732,110,3,24,444,72,48,1451,160,45,229,38,4,42,113,14,5,16,410,155,44,249,236,167,29,910,70,3,5,434,692,18,223,25,4,4,50,186,18,44,80,312,706,403,5,649,205,87,1090,105,7361,12,16,7,19,227,26,456,70,585,204,2448,452,401,201,584,45,85,277,78,457,240,490,628,152,57,13,206,52,957,69,419,778,30,359,28,177,8,534,41,54,368,108,351,199,9,102,17,203,555,248,575,2490,932,347,706,58,75,1132,9,8,4,78,1048,52,107,112,177,152,672,52,12,190,424,79,56,7,81,221,759,46,9,23,252,12,428,11,382,15,71,281,3065,179,52,705,89,273,1463,777,9,474,49,100,4,47,16,11,361,596,154,340,111,4,5,235,431,4,116,7009,218,84,73,171,58,13,255,451,517,94,500,160,25,306,6,1628,252,617,9,1056,197,96,148,31,524,160,2771,334,3964,46,54,133,110,89,119,4,4,170,74,5,122,22,58,416,11,24,40,353,2091,35,67,1057,167,149,12,182,188,272,21,76,79,276,180,14,123,58,569,351,289,200,642,229,39,125,9,702,655,149,558,554,122,10,485,386,7,69,617,143,239,69,179,7,32,44,106,36,635,360,3,52,29,178,8,11,24,1549,785,54,2935,220,14,401,170,1116,5,482,58,396,1016,267,3,354,45,5,142,277,211,14,610,6,580,672,37,22,523,68,229,545,9,193,694,14,25,121,62,907,280,7,37,288,127,247,113,145,100,45,405,92,35,893,739,146,60,48,177,5,119,83,278,70,41,302,890,196,803,300,73,80,55,93,236,339,893,88,100,34,201,5,182,229,832,4,8,81,33,1378,222,290,78,10,137,179,344,333,34,5,24,116,10,1155,273,4,39,1191,74,63,598,9,21,1090,22,281,187,517,32,372,9,24,71,94,2440,9,94,14,41,68,198,122,146,50,385,4,186,55,756,127,828,78,327,125,116,37,8,286,283,7,931,110,45,10,104,86,119,94,7,37,146,4,18,6,10,745,525,409,168,129,134,1206,243,149,28,27,43,355,203,490,18,71,8,150,29,189,8,7,44,8,148,18],"type":"bar","name":"4","marker":{"color":"rgba(222,215,219,1)","line":{"color":"rgba(222,215,219,1)"}},"textfont":{"color":"rgba(222,215,219,1)"},"error_y":{"color":"rgba(222,215,219,1)"},"error_x":{"color":"rgba(222,215,219,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5","4.5"],"y":[210,5,214,275,86,178,218,16,113,516,48,193,7,560,51,310,3,17,202,457,970,74,14,53,33,134,974,20,98,3,1222,409,55,69,161,151,29,21,147,6,132,654,3,789,3,14,15,230,76,235,226,104,323,85,829,616,152,141,39,138,63,907,10,59,1092,129,163,3,56,51,857,321,11,6,3,1924,215,40,14,83,214,14,193,21,247,73,248,1142,5,21,272,386,3,803,75,41,28,14,39,15,91,98,5,186,33,642,294,27,922,343,3,38,203,395,88,353,69,23,260,7,3,55,10,77,95,18,557,6,71,84,34,25,619,116,383,5,22,23,305,395,980,19,321,181,47,263,85,109,151,98,26,66,241,3,98,213,17,202,68,323,8,135,23,3,264,17,337,117,174,125,16,10,22,11,40,1246,775,281,363,252,362,266,220,105,61,126,52,145,126,752,14,3,390,141,76,3,249,309,41,53,963,65,9,3,29,75,20,72,3,3,299,218,310,173,23,88,239,74,112,198,24,26,29,110,132,3,174,1586,22,723,3,106,24,44,375,12,4,124,592,604,242,201,33,1238,600,7,197,45,11,32,30,389,686,264,3,37,2024,558,40,237,34,166,8,14,236,663,72,6,60,3,52,67,21,78,48,17,31,11,3,82,64,182,85,3,58,272,431,1041,318,82,97,160,51,34,110,507,6,11,165,259,157,49,13,972,26,395,133,34,1054,333,547,74,133,91,21,9,97,7,504,161,71,332,234,387,29,1463,1608,533,258,8,82,198,11,293,4,279,459,4869,639,117,6,234,7,6,27,63,184,16,3,67,54,95,4,237,737,127,218,13,125,125,161,749,93,44,873,50,164,3,5,331,276,14,294,205,348,16,1307,113,944,268,353,245,5,429,83,35,19,72,80,480,66,45,127,350,19,122,27,293,189,28,217,102,81,7,292,17,484,18,1152,464,72,139,77,282,374,263,128,12,3,90,377,41,236,233,875,741,72,386,3262,328,299,321,115,477,711,47,177,142,245],"type":"bar","name":"4.5","marker":{"color":"rgba(198,174,193,1)","line":{"color":"rgba(198,174,193,1)"}},"textfont":{"color":"rgba(198,174,193,1)"},"error_y":{"color":"rgba(198,174,193,1)"},"error_x":{"color":"rgba(198,174,193,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5"],"y":[31,119,215,17,352,39,242,114,11,7,3,47,421,386,17,98,4,39,393,53,79,438,113,2349,31,18,599,51,5,58,118,63,7,45,49,63,3,222,29,16,114,16,16,526,943,21,230,13,377,240,456,50,92,15,49,80,5,97,26,65,7,53,326,375,33,97,1165,1280,11,326,350,64,81,119,4,183,14,17,792,18,63,46,727,221,90,7,80,536,6,553,213,94,24,69,7,251,649,163,188,8,224,13,586,263,106,83,16,88,19,16,164,6,13,474,11,193,123,21,9,155,1387,3,34,103,10,53,52,322,179,24,114,796,771,13,123,1327,6,47,14,3,12,85,45,3,268,10,30,7,109,153,122,280,101,53,4,32,163,54,342,139,15,10,258,21,239,12,33,34,449,6,41,6,22,174,7,80,35,213,614,21,3,48,211,71,199,70,24,15,62,4,445,101,396,43,5,629,288,12,304,2674,189,397,104,40,40,335,35,25,24,958,143,29,389,28,5,66,11,7,3,766,22,112,85,6,310,11,60,10,26,182,127,21,18,520,23,5,513,34,15,201,147,26,85,132,86,169,99,49,294,287,35,96,221,156,963,39,361,153,778,3,49,588,129,4,4,22,10,520,7,14,231,22,12,230,3,61,137,386,16,84,198,4,265,9,45,24,7,20,267,4,17,43,75,241,17,672,467,30,227,57,5,8,112,47,15,54,61,29,430,148,138,14,94,197,105,547,7,165,7,19,76,284,9,8,467,38,22,87,98,3,330,616,340,36,147,7,94,17,13,5,22,31,31,16,11,6,32,38,202,88,11,746,6,253,52,21,458,16,72,338,38,16,184,22,6,59,9,167,25,402,149,48,328,13,80,21,324,300,5950,85,6,42,91,105,388,122,182,813,18,15,184,104,8,19,44,8,75,41,140,57,10,14,54,77,5,9,11,182,258,49,19,69,369,191,110,32,125,275,13,12,54,142,11,491,700,3,16,6,4,14,51,28,75,145,7,414,27,13,5,192,57,13,75,29,3,4,21,6,10,4,4018,1118,234,203,58,10,16,17,384,19,22,16,4,77,403,335,509,51,361,79,394,247,132,23,65,186,79,5,76,367,7,62,45,41,489,74,94,147,95,202,8,25,82,13,454,7,133,13,228,23,16,190,20,9,3,131,51,73,650,7,300,5,11,42,3,22,605,77,68,388,56,3,480,3838,78,47,358,97,58,146,36,48,6,220,168,33,73,19,35,232,152,89,23,51,193,212,11,16,303,47,45,195,9,20,9,17,80,159,351,135,18,107,133,42,470,105,4,17,80,20,108,14,10,142,44,15,19,41,142,293,847,49,3,86,168,41,131,11,47,359,3,49,56,41,5,56,119,80,7,46,11,56,95,38,57,14,297,39,82,188,55,59,6,56,581,4,6,238,52,62,7,451,15,123,66,49,11,280,37,328,61,5,170,375,190,490,607,38,16,6,19,28,245,145,33,222,20,238,122,13,173,212,6,532,48,21,9,119,74,18,144,2502,336,13,34,3,22,42,56,69,5,207,38,31,10,1128,18,315,31,115,142,519,9,81,43,103,20,21,355,69,184,150,5,30,18,866,35,5,3,3,303,17,54,4,104,134,255,30,152,650,100,189,91,755,569,47,4,5,30,8,449,107,400,44,12,83,468,37,392,95,99,58,88,17,73,19,210,168,45,5,83,32,99,328,65,208,699,108,437,586,17,42,412,14,23,206,76,223,114,36,29,42,3,293,81,321,54,9,288,51,38,359,238,9,260,3,4,10,72,148,413,944,288,84,18,111,954,256,256,198,43,20,117,94,295,3,56,43,11,210,6,385,3,8,29,84,115,16,13,519,106,21,54,18,289,22,248,152,29,42,25,92,170,180,35,5,22,14,4,3,46,74,230,331,70,10,27,173,11,542,29,280,1229,20,9,39,230,18,16,352,80,121,208,5,398,82,73,18,57,536,19,34,68,33,15,154,67,4,188,211,18,611,179,55,191,22,64,143,233,438,615,35,59,82,50,22,3,92,267,12,676,7,271,20,3,17,4,116,14,5,63,130,3,142,57,7,132,402,118,7,820,199,81,41,62,143,21,40,2594,15,316,6,1399,111,34,3,13,177,16,12,91,102,34,115,8,83,3,149,3,266,107,282,3,47,20,17,77,25,813,9,148,24,268,45,153,6,37,1126,13,5,51,37,12,25,189,531,3],"type":"bar","name":"5","marker":{"color":"rgba(255,237,111,1)","line":{"color":"rgba(255,237,111,1)"}},"textfont":{"color":"rgba(255,237,111,1)"},"error_y":{"color":"rgba(255,237,111,1)"},"error_x":{"color":"rgba(255,237,111,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+<p>We believed the number of reviews may be related to the number of stars and thus plotted the two variables. It seemed that as the number of reviews increased, the star rating also increased. Our adjusted r-squared value was 0.022, thus we elected to not show this plot as it was not a significant relationship.</p>
+<p>To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot. We also did a similar graph, looking for areas of high concentration of different category types of restaurants. For the stacked bar plot, we looked at the top 15 categories of restaurants, and hand selected 10 categories likely to be mutually exclusive. This plot shows the frequency of different restaurant categories, broken down by neighborhood. This plots can be seen in our <a href="flexdashboard.html">flex dashboard</a>.</p>
 </div>
 </div>
 <div id="additional-analysis" class="section level5">
 <h5>Additional analysis:</h5>
+<p>We were interested in statistically testing whether the category of a restaurant affected the star ratings. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the category’s star rating differs from the others <em>(ANOVA: F-statistic = 52.459, Adjusted R-Square = 0.138, p-value = 0, degrees of freedom = 11)</em>. At least one category of restaurants has a different mean star value.</p>
+<p>We were also interested in statisticallly testing whether the neighborhood the restaurant was in affected the restaurant’s star rating. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the neighborhood’s star ratings differs from the rest <em>(ANOVA: F-statistic = 7.408, Adjusted R-Square = 0.029, p-value = 0, degrees of freedom = 16)</em>. At least one neighborhood has a different mean star value than the other neighborhoods.</p>
 </div>
 <div id="discussion" class="section level5">
 <h5>Discussion:</h5>
@@ -809,18 +793,6 @@ $(document).ready(function () {
 <p>PLOT 2: There were no obvious visual trends for concentration of low rated or high rated restaurants.</p>
 <p>PLOT 3: From this plot, we see that The Strip contains the most bars, breakfast and brunch, italian, and steakhouses compared to other resturants.</p>
 <p>PLOT 4: same as 3 but in map form &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<p>=======</p>
-</div>
-</div>
-<div id="sarahs-stuff-no-touchie" class="section level1">
-<h1>Sarah’s Stuff!!! No touchie</h1>
-<p>We were interested in statistically testing whether the category of a restaurant affected the star ratings. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the category’s star rating differs from the others <em>(ANOVA: F-statistic = 52.459, Adjusted R-Square = 0.138, p-value = 0, degrees of freedom = 11)</em>. At least one category of restaurants has a different mean star value.</p>
-<p>We were also interested in statisticallly testing whether the neighborhood the restaurant was in affected the restaurant’s star rating. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the neighborhood’s star ratings differs from the rest <em>(ANOVA: F-statistic = 7.408, Adjusted R-Square = 0.029, p-value = 0, degrees of freedom = 16)</em>. At least one neighborhood has a different mean star value than the other neighborhoods.</p>
-<div id="visualizations-summaries-and-exploratory-statistical-analyses.-justify-the-steps-you-took-and-show-any-major-changes-to-your-ideas.-1" class="section level6">
-<h6>Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.</h6>
-<p>This code includes a count of the restaurants broken down by neighborhood, and the breakdown of stars for each neighborhood. There is also a table showing the average number of reviews for restaurants in each neighborhood.</p>
-<p>PLOT 2: To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot.</p>
-<p>PLOT 3: We looked at the top 15 categories, and hand selected 10 categories likely to be mutually exclusive. &gt;&gt;&gt;&gt;&gt;&gt;&gt; 2a4b13c019e5cbe29b435f893f144b53dfd2af4c</p>
 </div>
 </div>
 
