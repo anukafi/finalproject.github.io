@@ -30,6 +30,7 @@ The source of the data: [Yelp](https://www.yelp.com/) is a well known website th
 
 #### *Approaches*
 We performed exploratory statistical analysis in order to look into this dataset. Originally the dataset contained information for all types of businesses, so we narrowed it to just restaurants in Las Vegas. We were able to look at restaurant information by neighborhood and category type too. 
+
 #### *Visualizations*
 We include 4 plots with our analysis. The first plot looks at whether people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating). Another graph displays if there were any geographic areas that had a high concentration of low rated or high rated restaurants. The last two graphs look at the breakdown of restaurant categories by neighborhood to see if certain neighborhood had concentrations of a specific type of restaurant. We looked at this two different ways, coloring by stars in one and coloring by category in the other. 
 
