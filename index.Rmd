@@ -1,4 +1,4 @@
-# **P8105 Final Project Yelp Data for Restaurants in Las Vegas"**
+# **P8105 Final Project Yelp Data for Restaurants in Las Vegas**
 
 ## **Information about this analysis**
 
