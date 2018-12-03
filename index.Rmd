@@ -1,6 +1,6 @@
-# **P8105 Final Project Yelp Data for Restaurants in Las Vegas**
+# **P8105 Final Project Yelp Data for Las Vegas Restaurants**
 
-## **Information about this analysis**
+### **Information about this analysis**
 
 This analysis looks at data from Yelp.com, specifically restaurants for the city of Las Vegas. 
 
@@ -12,7 +12,7 @@ A full report of this analysis can be found [here](Report.html).
 
 The original dataset can be found [here](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6), but since these files were very large, we filtered to find only datapoints in Las Vegas. The subset used in this analysis can be found [here](https://drive.google.com/drive/folders/1pv1kB8oF7DLqWeWaSoDqLAMhqVHLMOqu?usp=sharing).
 
-## **Screencast Placeholder**
+### **Screencast Placeholder**
 
 ```{r, echo = FALSE}
 library("htmltools")
