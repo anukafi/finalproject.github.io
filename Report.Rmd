@@ -80,10 +80,14 @@ Our statistical analyses includes a count of the restaurants broken down by neig
 restaurants %>% 
   group_by(neighborhood) %>% 
   count() %>% 
-  arrange(n) %>% 
+  arrange(desc(n)) %>% 
+  rename("Restaurant Count" = n ) %>% 
+  rename(Neighborhood = neighborhood) %>% 
   knitr::kable()
 ```
+
 We also created a breakdown count of stars ratings for each neighborhood:
+
 ```{r exploring 2, include = TRUE}
 restaurants %>% 
 select(business_id, neighborhood, stars) %>% 
@@ -91,36 +95,51 @@ select(business_id, neighborhood, stars) %>%
   group_by(neighborhood, stars) %>% 
   tally %>% 
   rename(Star_Count = n) %>% 
+  mutate(stars = str_c(stars, " star")) %>% 
   spread(key = stars, value = Star_Count) %>% 
+  arrange(desc(`5 star`),desc(`4.5 star`)) %>% 
   knitr::kable()
 ```
+
 There is also a table showing the average number of reviews for restaurants in each neighborhood below. 
+
 ```{r exploring 3, include = TRUE}
 restaurants %>%
   mutate(review_count = as.numeric(review_count)) %>% 
   select(business_id, neighborhood, review_count) %>% 
   group_by(neighborhood) %>% 
-  summarise(Average_Number_of_Reviews = mean(review_count)) %>% 
+  summarise("Average Number of Reviews" = round(mean(review_count),0)) %>% 
+  arrange(desc(`Average Number of Reviews`)) %>% 
+  rename(Neighborhood = neighborhood) %>% 
   knitr::kable()
 ```
-The following table shows teh average star rating for the restaurants in each neighborhood. 
+
+The following table shows the average star rating for the restaurants in each neighborhood.
+
 ```{r exploring 4, include = TRUE}
 restaurants %>% 
   group_by(neighborhood) %>% 
-  summarize(Average_Rating = mean(stars), Standard_Deviation = sd(stars)) %>% 
-  arrange(Average_Rating) %>% 
+  summarize("Average Rating" = round(mean(stars),2), "Standard Deviation" = round(sd(stars),2)) %>% 
+  arrange(desc(`Average Rating`)) %>% 
+  rename(Neighborhood = neighborhood) %>% 
   knitr::kable()
 ```
+
 This last table shows the star ratings for different categories of restaurant types. 
+
 ```{r exploring 5, include = TRUE}
 restaurants %>% 
-  inner_join(popular) %>% 
+  inner_join(popular, by = "business_id") %>% 
   select(stars, category) %>% 
   group_by(category) %>% 
-  summarise(avg_stars = mean(stars)) %>% 
+  summarise(avg_stars = round(mean(stars),2)) %>% 
   arrange(desc(avg_stars)) %>% 
+  rename(Category = category) %>% 
+  rename("Average Star Rating" = avg_stars) %>% 
   knitr::kable()
 ```
+
+The following plot shows the number of reviews for each star rating. 
 
 ```{r open_close, include = TRUE}
 restaurants %>% 
@@ -137,6 +156,13 @@ restaurants %>%
   layout(xaxis = list(title = "Stars"),
          yaxis = list(title = "Number of Reviews"))
 ```
+
+
+
+ 
+PLOT 2: To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot. 
+
+PLOT 3: We looked at the top 15 categories, and hand selected 10 categories likely to be mutually exclusive. 
 
 #####Additional analysis: 
 ```{r, include = FALSE}
@@ -159,6 +185,10 @@ rsq_stars_review_count <- restaurants %>%
   lm(stars ~ review_count, data = .) %>% 
   broom::glance()
 ```
+We were interested in statistically testing whether the category of a restaurant affected the star ratings. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the category's star rating differs from the others *(ANOVA: F-statistic = `r aov_stars_by_category %>% select(statistic) %>% mutate(statistic = round(statistic, 3))`, Adjusted R-Square = `r aov_stars_by_category %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, p-value = `r aov_stars_by_category %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_category %>% select(df) %>% mutate(df = round(df, 3))`)*. At least one category of restaurants has a different mean star value.
+
+We were also interested in statisticallly testing whether the neighborhood the restaurant was in affected the restaurant's star rating. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the neighborhood's star ratings differs from the rest *(ANOVA: F-statistic = `r aov_stars_by_neighborhood %>% select(statistic) %>% mutate(statistic = round(statistic, 3))`, Adjusted R-Square = `r aov_stars_by_neighborhood %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, p-value = `r aov_stars_by_neighborhood %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_neighborhood %>% select(df) %>% mutate(df = round(df, 3))`)*. At least one neighborhood has a different mean star value than the other neighborhoods. 
+
 #####Discussion: 
 ######What were your findings? Are they what you expect? What insights into the data can you make?
 There are 3476 restaurants included. The Strip has the most restaurants (613) and Anthem as the least (10). 
@@ -211,20 +241,4 @@ restaurants %>%
   layout(xaxis = list(title = "Longitude"),
          yaxis = list(title = "Latitude"))
 ```
-=======
 
-
-# Sarah's Stuff!!! No touchie
-We were interested in statistically testing whether the category of a restaurant affected the star ratings. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the category's star rating differs from the others *(ANOVA: F-statistic = `r aov_stars_by_category %>% select(statistic) %>% mutate(statistic = round(statistic, 3))`, Adjusted R-Square = `r aov_stars_by_category %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, p-value = `r aov_stars_by_category %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_category %>% select(df) %>% mutate(df = round(df, 3))`)*. At least one category of restaurants has a different mean star value.
-
-We were also interested in statisticallly testing whether the neighborhood the restaurant was in affected the restaurant's star rating. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the neighborhood's star ratings differs from the rest *(ANOVA: F-statistic = `r aov_stars_by_neighborhood %>% select(statistic) %>% mutate(statistic = round(statistic, 3))`, Adjusted R-Square = `r aov_stars_by_neighborhood %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, p-value = `r aov_stars_by_neighborhood %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_neighborhood %>% select(df) %>% mutate(df = round(df, 3))`)*. At least one neighborhood has a different mean star value than the other neighborhoods. 
-
-
-######Visualizations, summaries, and exploratory statistical analyses. Justify the steps you took, and show any major changes to your ideas.
-
-This code includes a count of the restaurants broken down by neighborhood, and the breakdown of stars for each neighborhood. There is also a table showing the average number of reviews for restaurants in each neighborhood. 
-
-PLOT 2: To visualize if there were any geographic areas that had a high concentration of low rated or high rated restaurants, we plotted longitudal against latitudinal coordinates in a scatter plot. 
-
-PLOT 3: We looked at the top 15 categories, and hand selected 10 categories likely to be mutually exclusive. 
->>>>>>> 2a4b13c019e5cbe29b435f893f144b53dfd2af4c
