@@ -1,18 +1,18 @@
-# **P8105 Final Project Yelp Data for Las Vegas Restaurants**
+# **Finding highly-rated restaurants in Las Vegas, Nevada**
+### ***Here are the types of food and neighborhoods you should try next***
 
-### **Information about this analysis**
+***
 
-This analysis looks at data from Yelp.com, specifically restaurants for the city of Las Vegas. 
+### **General Project Information**
 
-More information about our data and the approaches we took can be found on the [About](About.html) page. 
+* A full report of this analysis can be found [here](Report.html). 
 
-The repo is for this analysis can be found [here](https://github.com/anukafi/finalproject.github.io.git).
+* The repo is for this analysis can be found [here](https://github.com/anukafi/finalproject.github.io.git).
 
-A full report of this analysis can be found [here](Report.html). 
+* This analysis uses data from Yelp.com. The original dataset can be found [here](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6), but since these files were very large, we filtered to find only datapoints in Las Vegas. The subset used in this analysis can be found [here](https://drive.google.com/drive/folders/1pv1kB8oF7DLqWeWaSoDqLAMhqVHLMOqu?usp=sharing).
 
-The original dataset can be found [here](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6), but since these files were very large, we filtered to find only datapoints in Las Vegas. The subset used in this analysis can be found [here](https://drive.google.com/drive/folders/1pv1kB8oF7DLqWeWaSoDqLAMhqVHLMOqu?usp=sharing).
 
-### **Screencast Placeholder**
+### **Project Illustration: Screencast Placeholder**
 
 ```{r, echo = FALSE}
 library("htmltools")
@@ -21,7 +21,9 @@ library("vembedr")
 embed_url("https://www.youtube.com/watch?v=l5sIspLfmXM")
 ```
 
+
 ### **Analysis Summary**
+
 #### *Project Scope*
 The motivation of this project is answer the age-old question, "I don't know, what are you in the mood to eat tonight?".
 
