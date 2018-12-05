@@ -7,16 +7,13 @@ Stephanie Izard (smi2112)
 Anusheh Kafi (ak4123)
 
 #####Motivation: 
-######Provide an overview of the project goals and motivation.
 The motivation of this project is to use the Yelp dataset to look for trends in highly rated restaurants in Las Vegas. Our goal is to use the data to generate relevant insights that can be used to inform restaurant goers through dynamic visualizations to help answer the age-old question, "I don't know, what are you in the mood to eat tonight?".
 
 #####Related work: 
-######Anything that inspired you, such as a paper, a web site, or something we discussed in class.
 Yelp inspired us to explore data regarding restaurants as it is commonly used on a daily basis to check out local restaurants for a wide-range of information and reviews. 
 We were also inspired by the map created in class using the AirBnB data that used the latitudes and longitudes, thus found a dataset that included such thing so we would be able to create a similar map for restaurants in Las Vegas. 
 
 #####Initial questions: 
-######What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
 We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas. One of the things we were interested in was seeing if people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating) Another thing we wanted to look at was if there were any geographic areas that had a high concentration of low rated or high rated restaurants.Another area of interest was breakdown of restaurant categories by neighborhood to see if certain neighborhood had concentrations of a specific type of restaurant.
 
 #####Data: 
@@ -190,7 +187,6 @@ We were interested in statistically testing whether the category of a restaurant
 We were also interested in statisticallly testing whether the neighborhood the restaurant was in affected the restaurant's star rating. At alpha = 0.05, we have sufficient evidence to conclude that at least one of the neighborhood's star ratings differs from the rest *(ANOVA: F-statistic = `r aov_stars_by_neighborhood %>% select(statistic) %>% mutate(statistic = round(statistic, 3))`, Adjusted R-Square = `r aov_stars_by_neighborhood %>% select(adj.r.squared) %>% mutate(adj.r.squared = round(adj.r.squared, 3))`, p-value = `r aov_stars_by_neighborhood %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_neighborhood %>% select(df) %>% mutate(df = round(df, 3))`)*. At least one neighborhood has a different mean star value than the other neighborhoods. 
 
 #####Discussion: 
-######What were your findings? Are they what you expect? What insights into the data can you make?
 There were 3476 restaurants included in our analysis. The Strip is the neighborhood with the most restaurants at 613, and Anthem has the least with only 10 restaurants. However, we noticed during our exploratory analysis that while The Strip had the highest number of restaurants, it received the 3rd worst restaurant ratings on average. 
 Variations in star ratings differed significantly by both neighborhood and by restaurant category *(neighborhood ANOVA p-value = `r aov_stars_by_neighborhood %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_neighborhood %>% select(df) %>% mutate(df = round(df, 3))`); category ANOVA p-value = `r aov_stars_by_category %>% select(p.value) %>% mutate(p.value = round(p.value, 3))`, degrees of freedom = `r aov_stars_by_category %>% select(df) %>% mutate(df = round(df, 3))`).* We found that the restaurant category that received the best ratings regardless of neighborhood was Sushi Bars, with an average rating of 3.8 stars. The restaurant category with the lowest average star rating was Fast Food, with an average rating of only 2.6 stars. Meanwhile, the neighborhood with the highest rated restaurants was The Lake, with 3.79 stars on average. The neighborhood with the lowest rated restaurants was Sunrise, with only 3.24 stars on average. 
 

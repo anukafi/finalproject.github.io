@@ -12,7 +12,7 @@
 * This analysis uses data from Yelp.com. The original dataset can be found [here](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6), but since these files were very large, we filtered to find only datapoints in Las Vegas. The subset used in this analysis can be found [here](https://drive.google.com/drive/folders/1pv1kB8oF7DLqWeWaSoDqLAMhqVHLMOqu?usp=sharing).
 
 
-### **Project Illustration: Screencast Placeholder**
+### **Screencast**
 
 ```{r, echo = FALSE}
 library("htmltools")
