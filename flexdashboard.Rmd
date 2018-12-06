@@ -1,5 +1,5 @@
 ---
-title: "Flexdashboard"
+title: "Visualizations of Las Vegas Restaurant Data"
 output:
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -71,7 +71,7 @@ stacked
 Column {data-width=400}
 -----------------------------------------------------------------------
 
-### Geographical Distribution of Ratings
+### Geographical Distribution of Star Ratings
 
 ```{r stephs_geo_plot}
 geo_1 <- restaurants %>% 
