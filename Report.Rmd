@@ -1,24 +1,22 @@
 ---
 title: "Report"
 ---
-#####Group Members 
-Sarah Vititoe (sev2125)
-Stephanie Izard (smi2112)
-Anusheh Kafi (ak4123)
+#####Group Members: Sarah Vititoe (sev2125), Stephanie Izard (smi2112), Anusheh Kafi (ak4123)
 
 #####Motivation: 
 The motivation of this project is to use the Yelp dataset to look for trends in highly rated restaurants in Las Vegas. Our goal is to use the data to generate relevant insights that can be used to inform restaurant goers through dynamic visualizations to help answer the age-old question, "I don't know, what are you in the mood to eat tonight?".
 
 #####Related work: 
-Yelp inspired us to explore data regarding restaurants as it is commonly used on a daily basis to check out local restaurants for a wide-range of information and reviews. 
-We were also inspired by the map created in class using the AirBnB data that used the latitudes and longitudes, thus found a dataset that included such thing so we would be able to create a similar map for restaurants in Las Vegas. 
+Yelp inspired us to explore data regarding restaurants as it is commonly used on a daily basis to check out local restaurants for a wide-range of information and reviews. We were also inspired by the map created in class using the AirBnB data that used the latitudes and longitudes, thus found a dataset that included such thing so we would be able to create a similar map for restaurants in Las Vegas. 
 
 #####Initial questions: 
-We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas. One of the things we were interested in was seeing if people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating) Another thing we wanted to look at was if there were any geographic areas that had a high concentration of low rated or high rated restaurants.Another area of interest was breakdown of restaurant categories by neighborhood to see if certain neighborhood had concentrations of a specific type of restaurant.
+We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas. One of the things we were interested in was seeing if people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating). Another question we wanted to look at was if there were any geographic areas that had a high concentration of low rated or high rated restaurants.Another area of interest was breakdown of restaurant categories by neighborhood to see if certain neighborhood had concentrations of a specific type of restaurant. Our project evolved from our proposal mainly with regards to the city of investigation. We were initially primarily interested in NYC restuarant information but had to use Las Vegas information as it was publicly available.
 
 #####Data: 
 ######Source
 The source of the data:  [Yelp](https://www.yelp.com/) is a well known website that allows users to review and rate restaurants they've been to, so that this knowledge can be shared with others. Yelp users, or "Yelpers" have written over 163 million reviews since the website's inception in 2014, with 32 million unique users every month. This dataset was released for academic use, and can be accessed [here](https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6) on Kaggle.com. [Kaggle.com](https://www.kaggle.com/) is an online community of data scientists, owned by [Google](https://www.google.com/about/), and Yelp posted these csv files to Kaggle.com as a user. 
+
+The data subset used in this analysis can be found [here](https://drive.google.com/drive/folders/1pv1kB8oF7DLqWeWaSoDqLAMhqVHLMOqu?usp=sharing).
 
 #####Cleaning
 The category tags were concatenated into 1 variable so we had to split the string and then tidy the dataset to give us a list of business id's and their matching tags. We filtered the data to only include restaurants, as this dataset was for all businesses in Las Vegas. We also removed Downtown Tampa and North Valley because thy only had one restaurant, thus it seemed like an error. 
@@ -130,10 +128,11 @@ restaurants %>%
   inner_join(popular, by = "business_id") %>% 
   select(stars, category) %>% 
   group_by(category) %>% 
-  summarise(avg_stars = round(mean(stars),2)) %>% 
+  summarise(avg_stars = round(mean(stars),2), sd = round(sd(stars),2)) %>% 
   arrange(desc(avg_stars)) %>% 
   rename(Category = category) %>% 
-  rename("Average Star Rating" = avg_stars) %>% 
+  rename("Average Star Rating" = avg_stars,
+         "Standard Deviation" = sd) %>% 
   knitr::kable()
 ```
 
