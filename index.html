@@ -239,23 +239,23 @@ $(document).ready(function () {
 <h3><strong>Analysis Summary</strong></h3>
 <div id="project-scope" class="section level4">
 <h4><em>Project Scope</em></h4>
-<p>The motivation of this project is answer the age-old question, “I don’t know, what are you in the mood to eat tonight?”.</p>
+<p>Using data from Las Vegas, we focused on investigating star ratings, food categories, and neighborhoods to answer the age-old question, “I don’t know, what are you in the mood to eat tonight?”.</p>
 </div>
 <div id="data" class="section level4">
 <h4><em>Data</em></h4>
-<p>The source of the data: <a href="https://www.yelp.com/">Yelp</a> is a well known website that allows users to review and rate restaurants they’ve been to, so that this knowledge can be shared with others. Yelp users, or “Yelpers” have written over 163 million reviews since the website’s inception in 2014, with 32 million unique users every month.</p>
+<p>The source of the data, <a href="https://www.yelp.com/">Yelp</a>, is a well known website that allows users to review and rate restaurants they’ve visited to share with others. Yelp users, or “Yelpers”, have written over 163 million reviews since the website’s inception in 2014, with 32 million unique users every month.</p>
 </div>
 <div id="approaches" class="section level4">
 <h4><em>Approaches</em></h4>
-<p>We performed exploratory statistical analysis in order to look into this dataset. Originally the dataset contained information for all types of businesses, so we narrowed it to just restaurants in Las Vegas. We were able to look at restaurant information by neighborhood and category type too.</p>
+<p>First, we subsetted the original dataset to narrow our data points down to include only Las Vegas restaurants. Using this subset, we performed exploratory statistical analyses. Next, we created data summaries (tables and visualizations) to look at restaurant information by neighborhood and category type. Finally, we used ANOVA tests to see if if there was homogeneity in star ratings by food category and neighborhood.</p>
 </div>
 <div id="visualizations" class="section level4">
 <h4><em>Visualizations</em></h4>
-<p>We include 4 plots with our analysis. The first plot looks at whether people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating). Another graph displays if there were any geographic areas that had a high concentration of low rated or high rated restaurants. The last two graphs look at the breakdown of restaurant categories by neighborhood to see if certain neighborhood had concentrations of a specific type of restaurant. We looked at this two different ways, coloring by stars in one and coloring by category in the other.</p>
+<p>We included 3 plots with our analysis, located on our Flexdashboard. The first graph displays the number of restaurants in each category by neighborhood. The second two plots look at the geographical distribution of restaurants based on their star rating, and based on their restaurant category. These plots helped us to visually assessed whether or not there was clustering of ratings or categories based on location.</p>
 </div>
 <div id="results" class="section level4">
 <h4><em>Results</em></h4>
-<p>There were 3476 restaurants included in our analysis. The Strip is the neighborhood with the most restaurants at 613, and Anthem has the least with only 10 restaurants. However, we noticed during our exploratory analysis that while The Strip had the highest number of restaurants, it received the 3rd worst restaurant ratings on average. It is important to note that variations in star ratings differed significantly by both neighborhood and by restaurant category were significant according to our analysis.</p>
+<p>There were 3476 restaurants included in our analysis, 11 food categories, and 16 neighborhoods. We found that star ratings significantly differed both by neighborhood (p-value &lt; 0.05) and by restaurant category (p-value &lt; 0.05). Detailed results can be found in our project report.</p>
 </div>
 </div>
 </div>
