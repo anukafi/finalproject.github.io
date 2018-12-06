@@ -225,36 +225,27 @@ $(document).ready(function () {
 </div>
 
 
-<div id="group-members" class="section level5">
-<h5>Group Members</h5>
-<p>Sarah Vititoe (sev2125) Stephanie Izard (smi2112) Anusheh Kafi (ak4123)</p>
+<div id="group-members-sarah-vititoe-sev2125-stephanie-izard-smi2112-anusheh-kafi-ak4123" class="section level5">
+<h5>Group Members: Sarah Vititoe (sev2125), Stephanie Izard (smi2112), Anusheh Kafi (ak4123)</h5>
 </div>
 <div id="motivation" class="section level5">
 <h5>Motivation:</h5>
-<div id="provide-an-overview-of-the-project-goals-and-motivation." class="section level6">
-<h6>Provide an overview of the project goals and motivation.</h6>
 <p>The motivation of this project is to use the Yelp dataset to look for trends in highly rated restaurants in Las Vegas. Our goal is to use the data to generate relevant insights that can be used to inform restaurant goers through dynamic visualizations to help answer the age-old question, “I don’t know, what are you in the mood to eat tonight?”.</p>
-</div>
 </div>
 <div id="related-work" class="section level5">
 <h5>Related work:</h5>
-<div id="anything-that-inspired-you-such-as-a-paper-a-web-site-or-something-we-discussed-in-class." class="section level6">
-<h6>Anything that inspired you, such as a paper, a web site, or something we discussed in class.</h6>
 <p>Yelp inspired us to explore data regarding restaurants as it is commonly used on a daily basis to check out local restaurants for a wide-range of information and reviews. We were also inspired by the map created in class using the AirBnB data that used the latitudes and longitudes, thus found a dataset that included such thing so we would be able to create a similar map for restaurants in Las Vegas.</p>
-</div>
 </div>
 <div id="initial-questions" class="section level5">
 <h5>Initial questions:</h5>
-<div id="what-questions-are-you-trying-to-answer-how-did-these-questions-evolve-over-the-course-of-the-project-what-new-questions-did-you-consider-in-the-course-of-your-analysis" class="section level6">
-<h6>What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?</h6>
-<p>We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas. One of the things we were interested in was seeing if people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating) Another thing we wanted to look at was if there were any geographic areas that had a high concentration of low rated or high rated restaurants.Another area of interest was breakdown of restaurant categories by neighborhood to see if certain neighborhood had concentrations of a specific type of restaurant.</p>
-</div>
+<p>We are trying to answer questions about restaurant information and ratings for different neighborhoods in Las Vegas. One of the things we were interested in was seeing if people were more likely to review a restaurant if they had a more extreme opinion on their experience (like a 1 star or 5 star rating). Another question we wanted to look at was if there were any geographic areas that had a high concentration of low rated or high rated restaurants.Another area of interest was breakdown of restaurant categories by neighborhood to see if certain neighborhood had concentrations of a specific type of restaurant. Our project evolved from our proposal mainly with regards to the city of investigation. We were initially primarily interested in NYC restuarant information but had to use Las Vegas information as it was publicly available.</p>
 </div>
 <div id="data" class="section level5">
 <h5>Data:</h5>
 <div id="source" class="section level6">
 <h6>Source</h6>
 <p>The source of the data: <a href="https://www.yelp.com/">Yelp</a> is a well known website that allows users to review and rate restaurants they’ve been to, so that this knowledge can be shared with others. Yelp users, or “Yelpers” have written over 163 million reviews since the website’s inception in 2014, with 32 million unique users every month. This dataset was released for academic use, and can be accessed <a href="https://www.kaggle.com/yelp-dataset/yelp-dataset/version/6">here</a> on Kaggle.com. <a href="https://www.kaggle.com/">Kaggle.com</a> is an online community of data scientists, owned by <a href="https://www.google.com/about/">Google</a>, and Yelp posted these csv files to Kaggle.com as a user.</p>
+<p>The data subset used in this analysis can be found <a href="https://drive.google.com/drive/folders/1pv1kB8oF7DLqWeWaSoDqLAMhqVHLMOqu?usp=sharing">here</a>.</p>
 </div>
 </div>
 <div id="cleaning" class="section level5">
@@ -724,52 +715,64 @@ $(document).ready(function () {
 <tr class="header">
 <th align="left">Category</th>
 <th align="right">Average Star Rating</th>
+<th align="right">Standard Deviation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Sushi Bars</td>
 <td align="right">3.80</td>
+<td align="right">0.61</td>
 </tr>
 <tr class="even">
 <td align="left">Steakhouses</td>
 <td align="right">3.79</td>
+<td align="right">0.56</td>
 </tr>
 <tr class="odd">
 <td align="left">Salad</td>
 <td align="right">3.74</td>
+<td align="right">0.61</td>
 </tr>
 <tr class="even">
 <td align="left">Breakfast &amp; Brunch</td>
 <td align="right">3.63</td>
+<td align="right">0.65</td>
 </tr>
 <tr class="odd">
 <td align="left">Bars</td>
 <td align="right">3.60</td>
+<td align="right">0.62</td>
 </tr>
 <tr class="even">
 <td align="left">Italian</td>
 <td align="right">3.56</td>
+<td align="right">0.68</td>
 </tr>
 <tr class="odd">
 <td align="left">Mexican</td>
 <td align="right">3.54</td>
+<td align="right">0.74</td>
 </tr>
 <tr class="even">
 <td align="left">Chinese</td>
 <td align="right">3.37</td>
+<td align="right">0.68</td>
 </tr>
 <tr class="odd">
 <td align="left">Pizza</td>
 <td align="right">3.37</td>
+<td align="right">0.83</td>
 </tr>
 <tr class="even">
 <td align="left">Chicken Wings</td>
 <td align="right">3.17</td>
+<td align="right">0.88</td>
 </tr>
 <tr class="odd">
 <td align="left">Fast Food</td>
 <td align="right">2.86</td>
+<td align="right">0.83</td>
 </tr>
 </tbody>
 </table>
@@ -784,12 +787,9 @@ $(document).ready(function () {
 </div>
 <div id="discussion" class="section level5">
 <h5>Discussion:</h5>
-<div id="what-were-your-findings-are-they-what-you-expect-what-insights-into-the-data-can-you-make" class="section level6">
-<h6>What were your findings? Are they what you expect? What insights into the data can you make?</h6>
 <p>There were 3476 restaurants included in our analysis. The Strip is the neighborhood with the most restaurants at 613, and Anthem has the least with only 10 restaurants. However, we noticed during our exploratory analysis that while The Strip had the highest number of restaurants, it received the 3rd worst restaurant ratings on average. Variations in star ratings differed significantly by both neighborhood and by restaurant category <em>(neighborhood ANOVA p-value = 0, degrees of freedom = 16); category ANOVA p-value = 0, degrees of freedom = 11).</em> We found that the restaurant category that received the best ratings regardless of neighborhood was Sushi Bars, with an average rating of 3.8 stars. The restaurant category with the lowest average star rating was Fast Food, with an average rating of only 2.6 stars. Meanwhile, the neighborhood with the highest rated restaurants was The Lake, with 3.79 stars on average. The neighborhood with the lowest rated restaurants was Sunrise, with only 3.24 stars on average.</p>
 <p>From these findings, we can infer that we would have a better overall food experience in any neighborhood in Las Vegas if we chose to eat at a Sushi Bar, and the worst experience at a Fast Food restaurant. Similarly, we can can infer that we would have a better overall food experience in The Lake, regardless of food category, and we would have the worst experience in Sunrise.</p>
 <p>There is no option to go to the highest rated category in the highest rated neighborhood (a Sushi Bar at The Lake). However, we could expect a star rating of 4 if we went to a Sushi Bar in the next highest rated neighborhood overall, Chinatown. Meanwhile, if we chose to go to the lowest rated category in the lowest rated neighborhood (a Fast Food restaurant in Sunrise), we’d expect a star rating of 2.5.</p>
-</div>
 </div>
 
 
